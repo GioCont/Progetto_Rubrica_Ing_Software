@@ -15,9 +15,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-                System.out.println("Print di prova");
-                        System.out.println("terza prova per la modifica");
-                        System.out.println("p");
+        System.out.println("work in progress");
+                     
 
     }
     
