@@ -41,4 +41,5 @@ public class ContattoComparator implements Comparator<Contatto> {
         return rif1.compareTo(rif2);
     }
     
+    
 }
