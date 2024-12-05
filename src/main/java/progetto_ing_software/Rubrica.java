@@ -43,6 +43,7 @@ public class Rubrica {
         contatti.remove(c);
     }
     
+    //prototipo
     public void salvaRubrica(){
          try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             out.writeObject(contatti);
@@ -50,6 +51,8 @@ public class Rubrica {
             e.printStackTrace();
         }
     }
+    
+    //prototipo
     public void caricaRubrica(){
      File file = new File(FILE_NAME);
         if (file.exists()) {
@@ -62,6 +65,14 @@ public class Rubrica {
     
     }
     
+    public List<Contatto> ricercaContatti(String text){
+        List<Contatto> rif = new ArrayList();
+        for (Contatto c : contatti){
+            if(c.getCognome().contains(text) || c.getNome().contains(text))
+                rif.add(c);
+        }
+        return rif;
+    }
     
     
 }
