@@ -31,7 +31,6 @@ public class Rubrica {
     }
     
     public List<Contatto> getContatti(){
-        contatti.sort(new ContattoComparator());
         return contatti;
     }
     
@@ -72,6 +71,14 @@ public class Rubrica {
                 rif.add(c);
         }
         return rif;
+    }
+    
+    public Contatto getContatto(int index){
+        return contatti.get(index);
+    }
+    
+    public void Sort(){
+        contatti.sort(new ContattoComparator());
     }
     
     
