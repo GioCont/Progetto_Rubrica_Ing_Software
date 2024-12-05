@@ -25,6 +25,10 @@ public class Contatto {
      * @param[in] cognome :cognome del contatto
      * @param[in] numeroTelefono :primo numero di telefono del contatto
      * @param[in] email :prima email del contatto
+     * @param nome
+     * @param cognome
+     * @param numeroTelefono
+     * @param email
      */
     
     public Contatto(String nome,String cognome,String numeroTelefono,String email){
@@ -57,6 +61,7 @@ public class Contatto {
      * @brief restituisce il numero di telefono con indice passato per parametro
      * @param[in] index :l'inidce del numero di telefono 
      * @return numeroTelefono : numero di telefono con indice dato
+     * @param index
      */
     
     public String getNumeroTelefono(int index){
@@ -67,6 +72,7 @@ public class Contatto {
      * @brief restituisce l'email con indice passato per parametro
      * @param[in] index :l'inidce del numero di telefono 
      * @return email : email con indice dato
+     * @param index
      */
     
     public String getEmail(int index){
@@ -76,6 +82,7 @@ public class Contatto {
     /**
      * @brief consente di settare il nome del contatto
      * @param[in] nome: nuovo nome da dare al contatto
+     * @param nome
      */
     
     public void setNome(String nome){
@@ -85,6 +92,7 @@ public class Contatto {
     /**
      * @brief consente di settare il cognome del contatto
      * @param[in] cognome: nuovo cognome da dare al contatto
+     * @param cognome
      */
     
     public void setCongome(String cognome){
@@ -95,6 +103,8 @@ public class Contatto {
      * @brief connsente di settare un numero di telefono di indice passato per parametro
      * @param[in] numeroTelefono :nuovo numero di telefono
      * @param[in] index :indice del numero di telefono da settare
+     * @param numeroTelefono
+     * @param index
      */
     
     public void setNumeroTelefono(String numeroTelefono,int index){
@@ -104,6 +114,8 @@ public class Contatto {
      * @brief connsente di settare una email di indice passato per parametro
      * @param[in] email :nuova email
      * @param[in] index :indice del email da settare
+     * @param email
+     * @param index
      */
     
     public void setEmail(String email,int index){
