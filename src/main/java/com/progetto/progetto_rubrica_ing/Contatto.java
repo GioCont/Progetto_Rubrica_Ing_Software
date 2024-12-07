@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @brief questo file implemetta tutti i metodi di contatto
  * @version 1.0
  * @author cerro
+ * prova peer capire se va
  */
 public class Contatto {
     private String nome;
