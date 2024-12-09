@@ -140,15 +140,15 @@ public class RubricaGUI {
         if (!(nome.isEmpty() && cognome.isEmpty())) {
             Contatto nuovoContatto = new Contatto(nome, cognome, telefono, email);
             contatti.add(nuovoContatto);
-            contatti.sort(new NomComparator());
+            contatti.sort(new ContattoComparator());
             while(tableModel.getRowCount()>0){
                 tableModel.removeRow(0);
             }
             for(Contatto cont:contatti){
                 nome=cont.getNome();
                 cognome=cont.getCognome();
-                telefono=cont.getTelefono();
-                email=cont.getEmail();
+                telefono=cont.getNumeroTelefono(0);
+                email=cont.getEmail(0);
             tableModel.addRow(new Object[]{nome, cognome, telefono, email});
             
             }
