@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @file Contatto.java
  * @brief questo file implemetta tutti i metodi di contatto
  * @version 1.0
- * @author cerro
+ * @author gruppo
  */
 public class Contatto implements Serializable {
     private String nome;
