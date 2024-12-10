@@ -4,10 +4,6 @@
  */
 package progetto_ing_software;
 
-/**
- *
- * @author Giovanni
- */
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -32,25 +28,45 @@ public class Rubrica {
     public Rubrica(){
         contatti=new ArrayList<Contatto>();
     }
+    /**
+     * @brief metodo che restiteusce la lista sempre in ordine
+     * @return contatti :ritorna la lista con tutti i contatti 
+     */
     
     public List<Contatto> getContatti(){
         Sort();
         return contatti;
     }
     
+    /**
+     * @brief metodo che consente l'aggiunta di un contatto alla rubrica
+     * @param[in] c :contatto da inserire nella lista
+     */
     public void addContatto(Contatto c){
         contatti.add(c);
     }
     
+    /**
+     * @brief metodo per rimuovere un contatto
+     * @param[in] c :contatto da rimuovere
+     */
     public void removeContatto(Contatto c){
         contatti.remove(c);
     }
     
+    /**
+     * @brief metodo che consente la modifica di un contatto in un determinato indice
+     * @param[in] index :indice del contatto da modificare
+     * @param[in] contatto :nuovo contatto con cui sostituire il vechio
+     */
       public void modificaContatto(int index, Contatto contatto) {
         contatti.set(index, contatto);
     }
     
-    //prototipo
+    /**
+     * @brief metodo per salvare la rubrica su un file 
+     * @post verrà creato un file "rubrica.dat
+     */
     public void salvaRubrica(){
          try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             out.writeObject(contatti);
@@ -59,7 +75,10 @@ public class Rubrica {
         }
     }
     
-    //prototipo
+    /**
+     * @brief metodo che consente di caricare la rubrica da file
+     * @post il programma visualizzera la rubrica caricata
+     */
     public void caricaRubrica(){
      File file = new File(FILE_NAME);
         if (file.exists()) {
@@ -70,7 +89,12 @@ public class Rubrica {
             }
         }
     
-    }
+    }/**
+     * @brief metodo che consente la ricerca di una stringa all'interno del nome o cognome dei contatti 
+     * @param[in] text :stringa da ricercare nei nomi e cognomi dei contatti
+     * @return rif  :lista di contatti contenente solo i contatti che hanno dato riscontro positivo sulla ricerca
+     * @invariant la rubrica non viene modificata
+     */
     
     public List<Contatto> ricercaContatti(String text){
         List<Contatto> rif = new ArrayList();
@@ -81,10 +105,10 @@ public class Rubrica {
         return rif;
     }
     
-    public Contatto getContatto(int index){
-        return contatti.get(index);
-    }
-    
+    /**
+     * @brief metodo che ordina la lista secondo il comparatore implementato nella classe Contatto Comparator
+     * @invariant le informazioni dei contatti non vengono modificate
+     */
     private void Sort(){
         contatti.sort(new ContattoComparator());
     }

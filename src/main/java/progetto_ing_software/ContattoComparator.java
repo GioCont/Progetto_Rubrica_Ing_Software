@@ -8,10 +8,10 @@ package progetto_ing_software;
 import java.util.Comparator;
 
 /**
- * @file ContattoComparator
+ * @file ContattoComparator.java
  * @brief questo file implementa la compare per il contatto
  * @version 1.0
- * @author cerro
+ * @author gruppo
  */
 public class ContattoComparator implements Comparator<Contatto> {
 
