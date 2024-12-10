@@ -27,11 +27,13 @@ public class Contatto {
      * @param[in] email :prima email del contatto
      */
     
-    public Contatto(String nome,String cognome,String numeroTelefono,String email){
+    public Contatto(String nome,String cognome,String[] numeroTelefono,String[] email){
         this.nome=nome;
         this.cognome=cognome;
-        this.numeroTelefono[0]=numeroTelefono;
-        this.email[0]=email;
+        this.numeroTelefono=new String [3];
+        this.numeroTelefono=numeroTelefono;
+        this.email=new String[3];
+        this.email=email;
         
     }
     
@@ -59,8 +61,8 @@ public class Contatto {
      * @return numeroTelefono : numero di telefono con indice dato
      */
     
-    public String getNumeroTelefono(int index){
-        return this.numeroTelefono[index];
+    public String[] getNumeroTelefono(){
+        return this.numeroTelefono;
     }
     
     /**
@@ -69,8 +71,8 @@ public class Contatto {
      * @return email : email con indice dato
      */
     
-    public String getEmail(int index){
-        return this.email[index];
+    public String[] getEmail(){
+        return this.email;
     }
     
     /**

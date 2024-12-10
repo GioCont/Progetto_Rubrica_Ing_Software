@@ -45,6 +45,10 @@ public class Rubrica {
         contatti.remove(c);
     }
     
+      public void modificaContatto(int index, Contatto contatto) {
+        contatti.set(index, contatto);
+    }
+    
     //prototipo
     public void salvaRubrica(){
          try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
