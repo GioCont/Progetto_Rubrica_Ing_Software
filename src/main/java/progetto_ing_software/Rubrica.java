@@ -19,9 +19,8 @@ import java.util.List;
  * @version 1.0
  * @author cerro
  */
-public class Rubrica {
+public class Rubrica extends InOutRubrica {
     private List<Contatto> contatti;
-    private static final String FILE_NAME = "rubrica.dat";
     
     
     
@@ -68,11 +67,7 @@ public class Rubrica {
      * @post verrà creato un file "rubrica.dat
      */
     public void salvaRubrica(){
-         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-            out.writeObject(contatti);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       super.salvaRubrica(contatti);
     }
     
     /**
@@ -80,16 +75,9 @@ public class Rubrica {
      * @post il programma visualizzera la rubrica caricata
      */
     public void caricaRubrica(){
-     File file = new File(FILE_NAME);
-        if (file.exists()) {
-            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-                contatti = (List<Contatto>) in.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    
-    }/**
+      contatti=super.caricaRubrica(contatti);
+    }
+    /**
      * @brief metodo che consente la ricerca di una stringa all'interno del nome o cognome dei contatti 
      * @param[in] text :stringa da ricercare nei nomi e cognomi dei contatti
      * @return rif  :lista di contatti contenente solo i contatti che hanno dato riscontro positivo sulla ricerca
