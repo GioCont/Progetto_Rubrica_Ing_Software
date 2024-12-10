@@ -18,7 +18,7 @@ public class RubricaGUI
     private JList<Contatto> listaContatti;
     private DefaultListModel<Contatto> listModel;
     private JTextField nomeField, cognomeField, telefono1Field, telefono2Field, telefono3Field;
-    private JTextField email1Field, email2Field, email3Field;
+    private JTextField email1Field, email2Field, email3Field, searchField;
     private Rubrica rubrica;
 
     public RubricaGUI()
@@ -36,7 +36,7 @@ public class RubricaGUI
 
         JScrollPane listScrollPane = new JScrollPane(listaContatti);
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new GridLayout(8, 2));
+        rightPanel.setLayout(new GridLayout(9, 2));
 
         // Campi di Input
         nomeField = new JTextField();
@@ -47,6 +47,7 @@ public class RubricaGUI
         email1Field = new JTextField();
         email2Field = new JTextField();
         email3Field = new JTextField();
+        searchField= new JTextField();
 
         rightPanel.add(new JLabel("Nome"));
         rightPanel.add(nomeField);
@@ -64,6 +65,8 @@ public class RubricaGUI
         rightPanel.add(email2Field);
         rightPanel.add(new JLabel("Email 3"));
         rightPanel.add(email3Field);
+        searchField.addActionListener(e -> searchContatto());
+        rightPanel.add(searchField);
 
         //Inizializzazione Pulsanti
         JButton aggiungiButton = new JButton("Aggiungi");
@@ -71,13 +74,15 @@ public class RubricaGUI
         JButton eliminaButton = new JButton("Elimina");
         JButton caricaButton = new JButton("Carica");
         JButton salvaButton = new JButton("Salva");
+        
 
         //Funzione dei Pulsanti
         aggiungiButton.addActionListener(e -> aggiungiContatto());
         modificaButton.addActionListener(e -> modificaContatto());
         eliminaButton.addActionListener(e -> eliminaContatto());
-        caricaButton.addActionListener(e-> caricaFileRubrica());
+        caricaButton.addActionListener(e-> caricaRubrica());
         salvaButton.addActionListener(e -> salvaRubrica());
+        
 
         //Aggiunta Pulsanti al buttonPanel
         JPanel buttonPanel = new JPanel();
@@ -93,7 +98,6 @@ public class RubricaGUI
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         // Carica contatti dal file CSV
-        caricaRubrica();
 
         frame.setSize(600, 400);
         frame.setVisible(true);
@@ -122,6 +126,7 @@ public class RubricaGUI
             listModel.addElement(contatto);
         }
     }
+    
 
     private void aggiungiContatto()
     {
@@ -130,7 +135,6 @@ public class RubricaGUI
         Contatto contatto = new Contatto(nomeField.getText(), cognomeField.getText(), numeri, emails);
         rubrica.addContatto(contatto);
         aggiornaListaContatti();
-        salvaRubrica();
         clearTextFields();
     }
 
@@ -143,9 +147,18 @@ public class RubricaGUI
             Contatto contatto = new Contatto(nomeField.getText(), cognomeField.getText(), numeri, emails);
             rubrica.modificaContatto(selectedIndex, contatto);
             aggiornaListaContatti();
-            salvaRubrica();
             clearTextFields();
         }
+    }
+    
+    private void  searchContatto(){
+        listModel.clear();
+        String text = searchField.getText();
+        for (Contatto contatto : rubrica.ricercaContatti(text))
+        {
+            listModel.addElement(contatto);
+        }
+    
     }
 
     private void eliminaContatto()
@@ -156,7 +169,6 @@ public class RubricaGUI
             Contatto contatto = listaContatti.getSelectedValue();
             rubrica.removeContatto(contatto);
             aggiornaListaContatti();
-            salvaRubrica();
             clearTextFields();
         }
     }
@@ -164,15 +176,8 @@ public class RubricaGUI
     //Primo caricamento del file di Rubrica
     private void caricaRubrica()
     {
-        try
-        {
-            rubrica.caricaRubrica();
-            aggiornaListaContatti();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+      rubrica.caricaRubrica();
+      aggiornaListaContatti();
     }
 
     //Salva il file della Rubrica
@@ -180,6 +185,7 @@ public class RubricaGUI
     {
         //Da modificare, bisogna permettere di salvare anche il file appena aperto tramite caricamento
         rubrica.salvaRubrica();
+        aggiornaListaContatti();
     }
 
     private void caricaFileRubrica()

@@ -5,6 +5,7 @@
  */
 package progetto_ing_software;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @author cerro
  */
-public class Contatto {
+public class Contatto implements Serializable {
     private String nome;
     private String cognome;
     private String [] numeroTelefono;
@@ -112,5 +113,8 @@ public class Contatto {
         this.email[index]=email;
     }
     
-    
+    @Override
+    public String toString(){
+        return nome +" "+ cognome;
+    }
 }

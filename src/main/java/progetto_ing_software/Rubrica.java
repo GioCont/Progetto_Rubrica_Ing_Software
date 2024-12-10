@@ -34,6 +34,7 @@ public class Rubrica {
     }
     
     public List<Contatto> getContatti(){
+        Sort();
         return contatti;
     }
     
@@ -73,7 +74,7 @@ public class Rubrica {
     
     public List<Contatto> ricercaContatti(String text){
         List<Contatto> rif = new ArrayList();
-        for (Contatto c : contatti){
+        for (Contatto c : getContatti()){
             if(c.getCognome().contains(text) || c.getNome().contains(text))
                 rif.add(c);
         }
@@ -84,7 +85,7 @@ public class Rubrica {
         return contatti.get(index);
     }
     
-    public void Sort(){
+    private void Sort(){
         contatti.sort(new ContattoComparator());
     }
     
