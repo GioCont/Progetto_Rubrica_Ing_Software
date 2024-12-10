@@ -41,7 +41,7 @@ public class Rubrica {
         contatti.add(c);
     }
     
-    public void remuveContatto(Contatto c){
+    public void removeContatto(Contatto c){
         contatti.remove(c);
     }
     
