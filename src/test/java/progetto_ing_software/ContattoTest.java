@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author cerro
  */
 public class ContattoTest {
+    Contatto contatto;
     
     public ContattoTest() {
     }
@@ -33,10 +34,16 @@ public class ContattoTest {
     
     @BeforeEach
     public void setUp() {
+        System.out.println("Set up contatti standard");
+        String[] numTel = {"3315783174","3357230290","3929261904"};
+        String[] email = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
+        contatto = new Contatto("Giovanni","Contursi",numTel,email);
     }
     
     @AfterEach
     public void tearDown() {
+        System.out.println("Clean standard var");
+        
     }
 
     /**
@@ -45,10 +52,7 @@ public class ContattoTest {
     @Test
     public void testGetNome() {
         System.out.println("getNomeTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        assertEquals("giovanni",c.getNome());
+        assertEquals("Giovanni",contatto.getNome());
     }
 
     /**
@@ -57,10 +61,7 @@ public class ContattoTest {
     @Test
     public void testGetCognome() {
         System.out.println("getCognomeTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        assertEquals("contursi",c.getCognome());
+        assertEquals("Contursi",contatto.getCognome());
     }
 
     /**
@@ -69,11 +70,8 @@ public class ContattoTest {
     @Test
     public void testGetNumeroTelefono() {
         System.out.println("getNumeroTelefonoTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        String[] array={"tel1","tel2","tel3"};
-        assertArrayEquals(array,c.getNumeroTelefono());
+        String[] array={"3315783174","3357230290","3929261904"};
+        assertArrayEquals(array,contatto.getNumeroTelefono());
     }
 
     /**
@@ -82,11 +80,8 @@ public class ContattoTest {
     @Test
     public void testGetEmail() {
         System.out.println("getEmailTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        String[] array={"email1","email2","email3"};
-        assertArrayEquals(array,c.getEmail());
+        String[] array = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
+        assertArrayEquals(array,contatto.getEmail());
     }
 
     /**
@@ -95,11 +90,8 @@ public class ContattoTest {
     @Test
     public void testSetNome() {
         System.out.println("setNomeTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        c.setNome("nicolas");
-        assertEquals("nicolas",c.getNome());
+        contatto.setNome("nicolas");
+        assertEquals("nicolas",contatto.getNome());
         
     }
 
@@ -109,11 +101,8 @@ public class ContattoTest {
     @Test
     public void testSetCongome() {
         System.out.println("setCognomeTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        c.setCongome("de stefano");
-        assertEquals("de stefano",c.getCognome());
+        contatto.setCognome("de stefano");
+        assertEquals("de stefano",contatto.getCognome());
     }
 
     /**
@@ -122,14 +111,11 @@ public class ContattoTest {
     @Test
     public void testSetNumeroTelefono() {
         System.out.println("setNumeroTelefonoTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        c.setNumeroTelefono("nuovo tel1", 0);
-        c.setNumeroTelefono("nuovo tel2", 1);
-        c.setNumeroTelefono("nuovo tel3", 2);
+        contatto.setNumeroTelefono("nuovo tel1", 0);
+        contatto.setNumeroTelefono("nuovo tel2", 1);
+        contatto.setNumeroTelefono("nuovo tel3", 2);
         String[] array={"nuovo tel1","nuovo tel2","nuovo tel3"};
-        assertArrayEquals(array,c.getNumeroTelefono());
+        assertArrayEquals(array,contatto.getNumeroTelefono());
     }
 
     /**
@@ -138,14 +124,11 @@ public class ContattoTest {
     @Test
     public void testSetEmail() {
         System.out.println("setNumeroTelefonoTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        c.setEmail("nuova email1", 0);
-        c.setEmail("nuova email2", 1);
-        c.setEmail("nuova email3", 2);
+        contatto.setEmail("nuova email1", 0);
+        contatto.setEmail("nuova email2", 1);
+        contatto.setEmail("nuova email3", 2);
         String[] array={"nuova email1","nuova email2","nuova email3"};
-        assertArrayEquals(array,c.getEmail());
+        assertArrayEquals(array,contatto.getEmail());
     }
 
     /**
@@ -154,10 +137,7 @@ public class ContattoTest {
     @Test
     public void testToString() {
         System.out.println("toStringTest");
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        assertEquals("giovanni contursi",c.toString());
+        assertEquals("Giovanni Contursi",contatto.toString());
     }
     
 }
