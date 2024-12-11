@@ -33,13 +33,13 @@ public class RubricaTest {
     
     @BeforeEach
     public void setUp() {
-        System.out.println("Set Up Class");
+        System.out.println("Set up contatti standard");
         lista = new ArrayList<Contatto>();
     }
     
     @AfterEach
     public void tearDown() {
-        System.out.println("Set Up Class");
+        System.out.println("Cleaning lista");
         lista.clear();
     }
 
