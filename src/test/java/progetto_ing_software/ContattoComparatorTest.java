@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author cerro
  */
 public class ContattoComparatorTest {
+    Contatto contatto1;
+    Contatto contatto2;
     
     public ContattoComparatorTest() {
     }
@@ -31,10 +33,19 @@ public class ContattoComparatorTest {
     
     @BeforeEach
     public void setUp() {
+        System.out.println("Set up contatti standard");
+        String[] numTel1 = {"3315783174","3357230290","3929261904"};
+        String[] email1 = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
+        contatto1 = new Contatto("Giovanni","Contursi",numTel1,email1);
+        String[] numTel2 = {"3920393265","3277115278","3319671661"};
+        String[] email2 = {"f.cerrone@gmail.com","fede.cerrone@gmail.com","federico.cerrone04@gmail.com"};
+        contatto2 = new Contatto("Federico","Cerrone",numTel2,email2);
+        
     }
     
     @AfterEach
     public void tearDown() {
+        System.out.println("Clear standard var");
     }
 
     /**
@@ -43,50 +54,39 @@ public class ContattoComparatorTest {
     @Test
     public void testCompare() {
         System.out.println("compareTest");        
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c1= new Contatto("giovanni","contursi",numTel,email);
-        Contatto c2= new Contatto("federico","cerrone",numTel,email);
         ContattoComparator comp= new ContattoComparator();
-        assertTrue(0<comp.compare(c1, c2));
-        assertFalse(0>comp.compare(c1, c2));
-        assertEquals(0,comp.compare(c1, c1));
-        assertEquals(0,comp.compare(c2, c2));
+        assertTrue(0<comp.compare(contatto1, contatto2));
+        assertFalse(0>comp.compare(contatto1, contatto2));
+        assertEquals(0,comp.compare(contatto1, contatto1));
+        assertEquals(0,comp.compare(contatto2, contatto2));
     }
     
     @Test
     public void testCompare1() {
         System.out.println("compareTest1");        
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c1= new Contatto("giovanni","",numTel,email);
-        Contatto c2= new Contatto("federico","cerrone",numTel,email);
+        contatto1.setCognome("");
         ContattoComparator comp= new ContattoComparator();
-        assertTrue(0<comp.compare(c1, c2));
+        assertTrue(0<comp.compare(contatto1, contatto2));
         
     }
     
     @Test
     public void testCompare2() {
         System.out.println("compareTest2");        
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c1= new Contatto("aldo","",numTel,email);
-        Contatto c2= new Contatto("federico","cerrone",numTel,email);
+        contatto1.setNome("Aldo");
+        contatto1.setCognome("");
         ContattoComparator comp= new ContattoComparator();
-        assertTrue(0>comp.compare(c1, c2));
+        assertTrue(0>comp.compare(contatto1, contatto2));
     }
     
     @Test
     public void testCompare3() {
         System.out.println("compareTest3");        
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c1= new Contatto("aldo","cerrone",numTel,email);
-        Contatto c2= new Contatto("federico","cerrone",numTel,email);
+        contatto1.setNome("Aldo");
+        contatto1.setCognome("Cerrone");
         ContattoComparator comp= new ContattoComparator();
-        assertTrue(0>comp.compare(c1, c2));
-        assertFalse(0<comp.compare(c1,c2));
+        assertTrue(0>comp.compare(contatto1, contatto2));
+        assertFalse(0<comp.compare(contatto1,contatto2));
     }
     
 }
