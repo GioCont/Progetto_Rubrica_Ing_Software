@@ -14,15 +14,17 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 /**
- *
- * @author cerro
+ * @file InOutRubrica.java
+ * @brief questo file implementa i metodi che consentono il lavataggio e il caricamento della rubrica
+ * @version 1.0
+ * @author gruppo
  */
 public class InOutRubrica {
     private static final String FILE_NAME = "rubrica.dat";
     
      /**
      * @brief metodo per salvare la rubrica su un file 
-     * @post verrà creato un file "rubrica.dat
+     * @post verrà sovrascritto il file "rubrica.dat"
      */
     public void salvaRubrica(List<Contatto> cont){
          try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {

@@ -57,9 +57,8 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce il numero di telefono con indice passato per parametro
-     * @param[in] index :l'inidce del numero di telefono 
-     * @return numeroTelefono : numero di telefono con indice dato
+     * @brief restituisce una stringa contenente tutti i numero di telefono
+     * @return numeroTelefono : stringa contente tutti i numero di telefono
      */
     
     public String[] getNumeroTelefono(){
@@ -67,9 +66,8 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce l'email con indice passato per parametro
-     * @param[in] index :l'inidce del numero di telefono 
-     * @return email : email con indice dato
+     * @brief restituisce una stringa contenente tutte le email
+     * @return email : stringa di email
      */
     
     public String[] getEmail(){
@@ -90,7 +88,7 @@ public class Contatto implements Serializable {
      * @param[in] cognome: nuovo cognome da dare al contatto
      */
     
-    public void setCongome(String cognome){
+    public void setCognome(String cognome){
         this.cognome=cognome;
     }
     
@@ -113,8 +111,15 @@ public class Contatto implements Serializable {
         this.email[index]=email;
     }
     
+    /**
+     * @brief restituisce una stringa che rapresenta il contatto
+     * @return restituisce una stinga con cognome e nome del contatto
+     * questo metodo restituisce una stringa formata dal cognome e dal nome, se il contatto ha cognome vuoto restituira solo il nome
+     */
     @Override
     public String toString(){
-        return nome +" "+ cognome;
+        if (cognome.isEmpty())
+            return nome;
+        return cognome +" "+ nome;
     }
 }
