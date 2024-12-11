@@ -17,7 +17,7 @@ import java.util.List;
  * @file Rubrica.java
  * @brief questo file implemetta tutti i metodi di rubrica
  * @version 1.0
- * @author cerro
+ * @author gruppo
  */
 public class Rubrica extends InOutRubrica {
     private List<Contatto> contatti;
