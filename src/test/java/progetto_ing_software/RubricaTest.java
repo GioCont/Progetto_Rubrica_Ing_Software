@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Giovanni
  */
 public class RubricaTest {
+    private List<Contatto> lista;
     
     public RubricaTest() {
     }
@@ -32,10 +33,14 @@ public class RubricaTest {
     
     @BeforeEach
     public void setUp() {
+        System.out.println("Set Up Class");
+        lista = new ArrayList<Contatto>();
     }
     
     @AfterEach
     public void tearDown() {
+        System.out.println("Set Up Class");
+        lista.clear();
     }
 
     /**
@@ -44,7 +49,6 @@ public class RubricaTest {
     @Test
     public void testGetContatti() {
         System.out.println("getContatti Test");
-        List<Contatto> prova = new ArrayList<Contatto>();
         Rubrica rubricaTest = new Rubrica();
         String[] numTel1 = {"tel12","tel22","tel32"};
         String[] email1 = {"email12","email22","email32"};
@@ -58,9 +62,9 @@ public class RubricaTest {
         rubricaTest.addContatto(a);
         rubricaTest.addContatto(b);
         rubricaTest.addContatto(c);
-        prova = rubricaTest.getContatti();
-        assertEquals(prova,rubricaTest.getContatti());
-        assertNotNull(prova);
+        lista = rubricaTest.getContatti();
+        assertEquals(lista,rubricaTest.getContatti());
+        assertNotNull(lista);
     }
 
     /**
@@ -69,15 +73,14 @@ public class RubricaTest {
     @Test
     public void testAddContatto() {
         System.out.println("addContatto Test");
-        List<Contatto> prova = new ArrayList<Contatto>();
         Rubrica rubricaTest = new Rubrica();
         String[] numTel1 = {"tel12","tel22","tel32"};
         String[] email1 = {"email12","email22","email32"};
         Contatto a= new Contatto("Federico","Cerrone",numTel1,email1);
         rubricaTest.addContatto(a);
         assertNotNull(rubricaTest);
-        prova.add(a);
-        assertEquals(prova,rubricaTest.getContatti());
+        lista.add(a);
+        assertEquals(lista,rubricaTest.getContatti());
     }
 
     /**
@@ -86,7 +89,6 @@ public class RubricaTest {
     @Test
     public void testRemoveContatto() {
         System.out.println("removeContatto Test");
-        List<Contatto> prova = new ArrayList<Contatto>();
         Rubrica rubricaTest = new Rubrica();
         String[] numTel1 = {"121212","222222","33333"};
         String[] email1 = {"email12","email22","email222"};
@@ -100,10 +102,10 @@ public class RubricaTest {
         rubricaTest.addContatto(a);
         rubricaTest.addContatto(b);
         rubricaTest.addContatto(c);
-        prova.add(a);
-        prova.add(b);
+        lista.add(a);
+        lista.add(b);
         rubricaTest.removeContatto(c);
-        assertEquals(prova,rubricaTest.getContatti());
+        assertEquals(lista,rubricaTest.getContatti());
     }
 
     /**
@@ -112,7 +114,6 @@ public class RubricaTest {
     @Test
     public void testModificaContatto() {
         System.out.println("modificaContatto Test");
-        List<Contatto> prova = new ArrayList<Contatto>();
         Rubrica rubricaTest = new Rubrica();
         String[] numTel1 = {"1111111","222222","333333"};
         String[] email1 = {"prova@1","prova@2","prova@3"};
@@ -129,11 +130,11 @@ public class RubricaTest {
         String[] numTel4 = {"1212121","2323232","3434343"};
         String[] email4 = {"prova@10","prova@11","prova@12"};
         Contatto d= new Contatto("Federico","Cerrone",numTel1,email1);
-        prova.add(d);
-        prova.add(c);
-        prova.add(b);
+        lista.add(d);
+        lista.add(c);
+        lista.add(b);
         rubricaTest.modificaContatto(0, d);
-        assertEquals(prova, rubricaTest.getContatti());
+        assertEquals(lista, rubricaTest.getContatti());
         
     }
 
@@ -143,15 +144,14 @@ public class RubricaTest {
     @Test
     public void testSalvaRubrica() {
         System.out.println("salvaRubrica");
-        List<Contatto> prova = new ArrayList<Contatto>();
         Rubrica rubricaTest = new Rubrica();
         String[] numTel1 = {"1111111","222222","333333"};
         String[] email1 = {"prova@1","prova@2","prova@3"};
         Contatto a= new Contatto("Giovanni","Contursi",numTel1,email1);
         rubricaTest.addContatto(a);
-        prova.add(a);
+        lista.add(a);
         rubricaTest.salvaRubrica();
-        assertEquals(prova,rubricaTest.getContatti());
+        assertEquals(lista,rubricaTest.getContatti());
     }
 
     /**
@@ -187,7 +187,6 @@ public class RubricaTest {
     public void testRicercaContatti() {
         System.out.println("ricercaContatti Test");
         Rubrica rubricaTest = new Rubrica();
-        List<Contatto> prova = new ArrayList<Contatto>();
         List<Contatto> rif = new ArrayList<Contatto>();
         String[] numTel1 = {"1111111","222222","333333"};
         String[] email1 = {"prova@1","prova@2","prova@3"};
@@ -201,9 +200,9 @@ public class RubricaTest {
         rubricaTest.addContatto(a);
         rubricaTest.addContatto(b);
         rubricaTest.addContatto(c);
-        prova.add(b);
+        lista.add(b);
         rif = rubricaTest.ricercaContatti("Giovanni");
-        assertEquals(rif.get(0),prova.get(0));
+        assertEquals(rif.get(0),lista.get(0));
     }
     
 }
