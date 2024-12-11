@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class RubricaTest {
     private List<Contatto> lista;
+    Contatto contatto1;
+    Contatto contatto2;
+    Contatto contatto3;
     
     public RubricaTest() {
     }
@@ -35,6 +38,16 @@ public class RubricaTest {
     public void setUp() {
         System.out.println("Set up contatti standard");
         lista = new ArrayList<Contatto>();
+        System.out.println("Set up contatti standard");
+        String[] numTel1 = {"3315783174","3357230290","3929261904"};
+        String[] email1 = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
+        contatto1 = new Contatto("Giovanni","Contursi",numTel1,email1);
+        String[] numTel2 = {"3920393265","3277115278","3319671661"};
+        String[] email2 = {"f.cerrone@gmail.com","fede.cerrone@gmail.com","federico.cerrone04@gmail.com"};
+        contatto2 = new Contatto("Federico","Cerrone",numTel2,email2);
+        String[] numTel3 = {"3319671661","3930842608","3384783469"};
+        String[] email3 = {"g.marolda@gmail.com","gius.marolda@gmail.com","giuseppe.marolda@gmail.com"};
+        contatto3 = new Contatto("Giuseppe","Marolda",numTel3,email3);
     }
     
     @AfterEach
@@ -50,18 +63,9 @@ public class RubricaTest {
     public void testGetContatti() {
         System.out.println("getContatti Test");
         Rubrica rubricaTest = new Rubrica();
-        String[] numTel1 = {"tel12","tel22","tel32"};
-        String[] email1 = {"email12","email22","email32"};
-        Contatto a= new Contatto("Federico","Cerrone",numTel1,email1);
-        String[] numTel2 = {"tel13","tel23","tel33"};
-        String[] email2 = {"email13","email23","email33"};
-        Contatto b= new Contatto("Federico","Cerrone",numTel2,email2);
-        String[] numTel3 = {"tel14","tel24","tel34"};
-        String[] email3 = {"email14","email24","email34"};
-        Contatto c= new Contatto("Federico","Cerrone",numTel3,email3);
-        rubricaTest.addContatto(a);
-        rubricaTest.addContatto(b);
-        rubricaTest.addContatto(c);
+        rubricaTest.addContatto(contatto1);
+        rubricaTest.addContatto(contatto2);
+        rubricaTest.addContatto(contatto3);
         lista = rubricaTest.getContatti();
         assertEquals(lista,rubricaTest.getContatti());
         assertNotNull(lista);
@@ -74,12 +78,9 @@ public class RubricaTest {
     public void testAddContatto() {
         System.out.println("addContatto Test");
         Rubrica rubricaTest = new Rubrica();
-        String[] numTel1 = {"tel12","tel22","tel32"};
-        String[] email1 = {"email12","email22","email32"};
-        Contatto a= new Contatto("Federico","Cerrone",numTel1,email1);
-        rubricaTest.addContatto(a);
+        rubricaTest.addContatto(contatto2);
         assertNotNull(rubricaTest);
-        lista.add(a);
+        lista.add(contatto2);
         assertEquals(lista,rubricaTest.getContatti());
     }
 
@@ -90,21 +91,12 @@ public class RubricaTest {
     public void testRemoveContatto() {
         System.out.println("removeContatto Test");
         Rubrica rubricaTest = new Rubrica();
-        String[] numTel1 = {"121212","222222","33333"};
-        String[] email1 = {"email12","email22","email222"};
-        Contatto a= new Contatto("Nicolas","De Stefano",numTel1,email1);
-        String[] numTel2 = {"2233223","4444","999999"};
-        String[] email2 = {"emai7777","emai3333","email6566"};
-        Contatto b= new Contatto("Nicolas","De Stefano",numTel2,email2);
-        String[] numTel3 = {"66666","767677","3232323"};
-        String[] email3 = {"email65566","email43434","emai333333"};
-        Contatto c= new Contatto("Pierluigi","Cinque",numTel3,email3);
-        rubricaTest.addContatto(a);
-        rubricaTest.addContatto(b);
-        rubricaTest.addContatto(c);
-        lista.add(a);
-        lista.add(b);
-        rubricaTest.removeContatto(c);
+        rubricaTest.addContatto(contatto1);
+        rubricaTest.addContatto(contatto2);
+        rubricaTest.addContatto(contatto3);
+        lista.add(contatto2);
+        lista.add(contatto1);
+        rubricaTest.removeContatto(contatto3);
         assertEquals(lista,rubricaTest.getContatti());
     }
 
@@ -115,24 +107,15 @@ public class RubricaTest {
     public void testModificaContatto() {
         System.out.println("modificaContatto Test");
         Rubrica rubricaTest = new Rubrica();
-        String[] numTel1 = {"1111111","222222","333333"};
-        String[] email1 = {"prova@1","prova@2","prova@3"};
-        Contatto a= new Contatto("Nicolas","De Stefano",numTel1,email1);
-        String[] numTel2 = {"444444","55555","66666"};
-        String[] email2 = {"prova@4","prova@5","prova@6"};
-        Contatto b= new Contatto("Giovanni","Contursi",numTel2,email2);
-        String[] numTel3 = {"777777","888888","99999"};
-        String[] email3 = {"prova@7","prova@8","prova@9"};
-        Contatto c= new Contatto("Pierluigi","Cinque",numTel3,email3);
-        rubricaTest.addContatto(a);
-        rubricaTest.addContatto(b);
-        rubricaTest.addContatto(c);
+        rubricaTest.addContatto(contatto1);
+        rubricaTest.addContatto(contatto2);
+        rubricaTest.addContatto(contatto3);
         String[] numTel4 = {"1212121","2323232","3434343"};
         String[] email4 = {"prova@10","prova@11","prova@12"};
-        Contatto d= new Contatto("Federico","Cerrone",numTel1,email1);
+        Contatto d= new Contatto("Nicolas","De Stefano",numTel4,email4);
+        lista.add(contatto2);
         lista.add(d);
-        lista.add(c);
-        lista.add(b);
+        lista.add(contatto3);
         rubricaTest.modificaContatto(0, d);
         assertEquals(lista, rubricaTest.getContatti());
         
@@ -145,11 +128,8 @@ public class RubricaTest {
     public void testSalvaRubrica() {
         System.out.println("salvaRubrica");
         Rubrica rubricaTest = new Rubrica();
-        String[] numTel1 = {"1111111","222222","333333"};
-        String[] email1 = {"prova@1","prova@2","prova@3"};
-        Contatto a= new Contatto("Giovanni","Contursi",numTel1,email1);
-        rubricaTest.addContatto(a);
-        lista.add(a);
+        rubricaTest.addContatto(contatto1);
+        lista.add(contatto1);
         rubricaTest.salvaRubrica();
         assertEquals(lista,rubricaTest.getContatti());
     }
@@ -162,18 +142,9 @@ public class RubricaTest {
         System.out.println("caricaRubrica Test");
         Rubrica rubricaTest = new Rubrica();
         Rubrica secondaRubrica = new Rubrica();
-        String[] numTel1 = {"1111111","222222","333333"};
-        String[] email1 = {"prova@1","prova@2","prova@3"};
-        Contatto a= new Contatto("Nicolas","De Stefano",numTel1,email1);
-        String[] numTel2 = {"444444","55555","66666"};
-        String[] email2 = {"prova@4","prova@5","prova@6"};
-        Contatto b= new Contatto("Giovanni","Contursi",numTel2,email2);
-        String[] numTel3 = {"777777","888888","99999"};
-        String[] email3 = {"prova@7","prova@8","prova@9"};
-        Contatto c= new Contatto("Pierluigi","Cinque",numTel3,email3);
-        rubricaTest.addContatto(a);
-        rubricaTest.addContatto(b);
-        rubricaTest.addContatto(c);
+        rubricaTest.addContatto(contatto1);
+        rubricaTest.addContatto(contatto2);
+        rubricaTest.addContatto(contatto3);
         rubricaTest.salvaRubrica();
         secondaRubrica.caricaRubrica();
         assertNotNull(secondaRubrica);
@@ -188,19 +159,10 @@ public class RubricaTest {
         System.out.println("ricercaContatti Test");
         Rubrica rubricaTest = new Rubrica();
         List<Contatto> rif = new ArrayList<Contatto>();
-        String[] numTel1 = {"1111111","222222","333333"};
-        String[] email1 = {"prova@1","prova@2","prova@3"};
-        Contatto a= new Contatto("Nicolas","De Stefano",numTel1,email1);
-        String[] numTel2 = {"444444","55555","66666"};
-        String[] email2 = {"prova@4","prova@5","prova@6"};
-        Contatto b= new Contatto("Giovanni","Contursi",numTel2,email2);
-        String[] numTel3 = {"777777","888888","99999"};
-        String[] email3 = {"prova@7","prova@8","prova@9"};
-        Contatto c= new Contatto("Pierluigi","Cinque",numTel3,email3);
-        rubricaTest.addContatto(a);
-        rubricaTest.addContatto(b);
-        rubricaTest.addContatto(c);
-        lista.add(b);
+        rubricaTest.addContatto(contatto1);
+        rubricaTest.addContatto(contatto2);
+        rubricaTest.addContatto(contatto3);
+        lista.add(contatto1);
         rif = rubricaTest.ricercaContatti("Giovanni");
         assertEquals(rif.get(0),lista.get(0));
     }

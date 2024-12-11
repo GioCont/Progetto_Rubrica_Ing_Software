@@ -137,7 +137,7 @@ public class ContattoTest {
     @Test
     public void testToString() {
         System.out.println("toStringTest");
-        assertEquals("Giovanni Contursi",contatto.toString());
+        assertEquals("Contursi Giovanni",contatto.toString());
     }
     
 }
