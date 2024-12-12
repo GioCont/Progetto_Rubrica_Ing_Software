@@ -38,7 +38,6 @@ public class RubricaTest {
     public void setUp() {
         System.out.println("Set up contatti standard");
         lista = new ArrayList<Contatto>();
-        System.out.println("Set up contatti standard");
         String[] numTel1 = {"3315783174","3357230290","3929261904"};
         String[] email1 = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
         contatto1 = new Contatto("Giovanni","Contursi",numTel1,email1);
@@ -126,7 +125,7 @@ public class RubricaTest {
      */
     @Test
     public void testSalvaRubrica() {
-        System.out.println("salvaRubrica");
+        System.out.println("salvaRubricaTest");
         Rubrica rubricaTest = new Rubrica();
         rubricaTest.addContatto(contatto1);
         lista.add(contatto1);
