@@ -19,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author cerro
  */
 public class InOutRubricaTest {
+    List<Contatto> list1;
+    List<Contatto> list2;
     
     public InOutRubricaTest() {
     }
@@ -33,10 +35,20 @@ public class InOutRubricaTest {
     
     @BeforeEach
     public void setUp() {
+        System.out.println("Set Up liste");
+        list1 = new ArrayList<Contatto>();
+        list2 = new ArrayList<>();
+        String[] numTel = {"tel1","tel2","tel3"};
+        String[] email = {"email1","email2","email3"};
+        Contatto c= new Contatto("Giovanni","Contursi",numTel,email);
+        list1.add(c);
     }
     
     @AfterEach
     public void tearDown() {
+        System.out.println("Cleaning lists");
+        list1.clear();
+        list2.clear();
     }
 
     /**
@@ -44,13 +56,8 @@ public class InOutRubricaTest {
      */
     @Test
     public void testSalvaRubrica() {
-        System.out.println("salvaRubrica");
-        List<Contatto> list1 = new ArrayList<Contatto>();
-        List<Contatto> list2 = new ArrayList<>();
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        list1.add(c);
+        System.out.println("salvaRubricaTest");
+        
         
         InOutRubrica r=new InOutRubrica();
         r.salvaRubrica(list1);
@@ -64,13 +71,7 @@ public class InOutRubricaTest {
      */
     @Test
     public void testCaricaRubrica() {
-        System.out.println("salvaRubrica");
-        List<Contatto> list1 = new ArrayList<Contatto>();
-        List<Contatto> list2 = new ArrayList<>();
-        String[] numTel = {"tel1","tel2","tel3"};
-        String[] email = {"email1","email2","email3"};
-        Contatto c= new Contatto("giovanni","contursi",numTel,email);
-        list1.add(c);
+        System.out.println("caricaRubricaTest");
         
         InOutRubrica r=new InOutRubrica();
         r.salvaRubrica(list1);
