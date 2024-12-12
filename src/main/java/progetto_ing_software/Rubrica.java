@@ -64,7 +64,7 @@ public class Rubrica extends InOutRubrica {
     
     /**
      * @brief metodo per salvare la rubrica su un file 
-     * @post verrà creato un file "rubrica.dat
+     * @post verrà creato un file "rubrica.dat"
      */
     public void salvaRubrica(){
        super.salvaRubrica(contatti);
