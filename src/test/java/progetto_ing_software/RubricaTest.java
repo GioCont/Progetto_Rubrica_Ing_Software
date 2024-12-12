@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author Giovanni
+ * @author Gruppo 23
  */
 public class RubricaTest {
     private List<Contatto> lista;

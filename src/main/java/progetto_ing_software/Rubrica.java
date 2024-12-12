@@ -15,9 +15,14 @@ import java.util.List;
 
 /**
  * @file Rubrica.java
- * @brief questo file implemetta tutti i metodi di rubrica
+ * @brief Questo file implemetta tutti i metodi di rubrica.
+ * 
+ * All'interno di questa classe viene definita la struttura e i metodi di una rubrica,
+ * la quale è una lista di contatti con vari metodi per essere modificata.
+ * 
  * @version 1.0
- * @author gruppo
+ * @author Gruppo 23
+ * @date 12/12/2024
  */
 public class Rubrica extends InOutRubrica {
     private List<Contatto> contatti;
@@ -28,8 +33,11 @@ public class Rubrica extends InOutRubrica {
         contatti=new ArrayList<Contatto>();
     }
     /**
-     * @brief metodo che restiteusce la lista sempre in ordine
-     * @return contatti :ritorna la lista con tutti i contatti 
+     * @brief Metodo che restituisce la lista di tutti i contatti in ordine alfabetico.
+     * 
+     * Funzione che tramite il metodo sort() restituisce la rubrica in odirne alfabetico.
+     * 
+     * @return contatti : Restituisce la lista con tutti i contatti 
      */
     
     public List<Contatto> getContatti(){
@@ -38,32 +46,42 @@ public class Rubrica extends InOutRubrica {
     }
     
     /**
-     * @brief metodo che consente l'aggiunta di un contatto alla rubrica
-     * @param[in] c :contatto da inserire nella lista
+     * @brief Metodo che consente l'aggiunta di un contatto alla rubrica.
+     * 
+     * Metodo void senza ritorno che permette l'iserimento di un contatto all'interno della rubrica.
+     * 
+     * @param[in] c : Contatto da inserire nella lista.
      */
     public void addContatto(Contatto c){
         contatti.add(c);
     }
     
     /**
-     * @brief metodo per rimuovere un contatto
-     * @param[in] c :contatto da rimuovere
+     * @brief Metodo per rimuovere un contatto.
+     * 
+     * Questa funzione permette di rimuovere il contatto desiderato dalla rubrica.
+     * 
+     * @param[in] c : Contatto da rimuovere.
      */
     public void removeContatto(Contatto c){
         contatti.remove(c);
     }
     
     /**
-     * @brief metodo che consente la modifica di un contatto in un determinato indice
-     * @param[in] index :indice del contatto da modificare
-     * @param[in] contatto :nuovo contatto con cui sostituire il vechio
+     * @brief Metodo che consente la modifica di un contatto in un determinato indice.
+     * 
+     * Questo metodo permette di modificare un contatto già esistente all'interno della rubrica
+     * selezionato tramite l'indice index ricevuto in ingresso, con un nuovo contatto anch'esso ricevuto in ingresso.
+     * 
+     * @param[in] index : Indice del contatto da modificare.
+     * @param[in] contatto : Nuovo contatto con cui sostituire il vecchio.
      */
       public void modificaContatto(int index, Contatto contatto) {
         contatti.set(index, contatto);
     }
     
     /**
-     * @brief metodo per salvare la rubrica su un file 
+     * @brief Metodo per salvare la rubrica su un file.
      * @post verrà creato un file "rubrica.dat"
      */
     public void salvaRubrica(){
@@ -78,10 +96,15 @@ public class Rubrica extends InOutRubrica {
       contatti=super.caricaRubrica(contatti);
     }
     /**
-     * @brief metodo che consente la ricerca di una stringa all'interno del nome o cognome dei contatti 
-     * @param[in] text :stringa da ricercare nei nomi e cognomi dei contatti
-     * @return rif  :lista di contatti contenente solo i contatti che hanno dato riscontro positivo sulla ricerca
-     * @invariant la rubrica non viene modificata
+     * @brief Metodo che consente la ricerca di un contatto all'interno della rubrica.
+     * 
+     * Questa funzione permette di cercare all'interno della rubrica un contatto, prendendo in ingresso una stringa
+     * contenente il nome o il cognome del contatto desiderato. Il parametro in uscita è una lista dei contatto che
+     * hanno avuto un riscontro con i criteri di ricerca inseriti. La rubrica non viene mai modificata.
+     * 
+     * @param[in] text : Stringa da ricercare tra i nomi e i cognomi dei contatti nella rubrica.
+     * @return rif  : Lista di contatti contenente solo i contatti che hanno dato riscontro positivo nella ricerca.
+     * @invariant La rubrica non viene modificata.
      */
     
     public List<Contatto> ricercaContatti(String text){
@@ -100,7 +123,14 @@ public class Rubrica extends InOutRubrica {
     
     /**
      * @brief metodo che ordina la lista secondo il comparatore implementato nella classe Contatto Comparator
+     * 
+     * See also: ContattoComparator
+     * 
+     * Questa funzione, tramite il metodo compare implementato nela classe ContattoComparator, ordina 
+     * alfabeticamente la rubrica per nome e cognome.
+     * 
      * @invariant le informazioni dei contatti non vengono modificate
+     * @see compare()
      */
     private void Sort(){
         contatti.sort(new ContattoComparator());

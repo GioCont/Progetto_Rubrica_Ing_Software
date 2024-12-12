@@ -15,9 +15,10 @@ import java.util.List;
 
 /**
  * @file InOutRubrica.java
- * @brief questo file implementa i metodi che consentono il lavataggio e il caricamento della rubrica
+ * @brief questo file implementa i metodi che consentono il salvataggio e il caricamento della rubrica
  * @version 1.0
- * @author gruppo
+ * @date 12/12/2024
+ * @author Gruppo 23
  */
 public class InOutRubrica {
     private static final String FILE_NAME = "rubrica.dat";

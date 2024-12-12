@@ -13,8 +13,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
- * @author cerro
+ *@file ContattoComparatorTest.java
+ * @brief Classe di test di tutti i metodi della classe ContattoComparator.
+ * 
+ * All'interno di questa classe vengono definiti tanti metodi quanti la classe ContattoComparator contiene.
+ * Per ogni metodo è stato impllementato un test che ne verifichi il corretto funzionamento.
+ * 
+ * @version 1.0
+ * @author Gruppo 23
+ * @date 12/12/2024
  */
 public class ContattoComparatorTest {
     Contatto contatto1;
@@ -31,6 +38,15 @@ public class ContattoComparatorTest {
     public static void tearDownClass() {
     }
     
+    
+    /**
+     * @brief Utilizzo del metodo BeforeEach per instanziare dei conatti di base.
+     * 
+     * All'interno di questa funzione si definisce che, prima di ogni test, vengano instanziati all'interno dei
+     * contatti standard, dei valori che saranno poi utilizzati nei test.
+     * 
+     */
+    
     @BeforeEach
     public void setUp() {
         System.out.println("Set up contatti standard");
@@ -43,13 +59,24 @@ public class ContattoComparatorTest {
         
     }
     
+    /**
+     * @brief Utilizzo del metodo AfterEach per un print.
+     * 
+     * All'interno di questa funzione si definisce che, dopo di ogni test, venga printato lo stato del processo.
+     * 
+     */
     @AfterEach
     public void tearDown() {
         System.out.println("Clear standard var");
     }
 
     /**
-     * Test of compare method, of class ContattoComparator.
+     * @brief Test del metodo compare nella classe ContattoComparator.
+     * 
+     * Questi test utilizzano i contatti creati nel BeforeEach per testare il funzionamento del metodo 
+     * compare, controllando in base all'ordine di inserimento dei contatti i valori restituiti.
+     * @see compare()
+     * 
      */
     @Test
     public void testCompare() {
