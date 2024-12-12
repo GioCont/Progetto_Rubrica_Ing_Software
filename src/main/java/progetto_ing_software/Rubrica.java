@@ -93,6 +93,11 @@ public class Rubrica extends InOutRubrica {
         return rif;
     }
     
+    public void setContatti(List<Contatto> contatti)
+    {
+        this.contatti=contatti;
+    }
+    
     /**
      * @brief metodo che ordina la lista secondo il comparatore implementato nella classe Contatto Comparator
      * @invariant le informazioni dei contatti non vengono modificate
