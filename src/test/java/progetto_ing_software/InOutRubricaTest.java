@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author cerro
+ * @author Gruppo 23
  */
 public class InOutRubricaTest {
     List<Contatto> list1;

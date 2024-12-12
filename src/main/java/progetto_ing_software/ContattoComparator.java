@@ -9,21 +9,29 @@ import java.util.Comparator;
 
 /**
  * @file ContattoComparator.java
- * @brief questo file implementa la compare per il contatto
+ * @brief Questo file implementa il metodo compare per i contatti.
+ * 
+ * All'interno di questa classe viene implementato il metodo compare, utilizzato per l'ordinamento
+ * in ordine alfabetico dei contatti contenuti nella rubrica.
+ * 
  * @version 1.0
- * @author gruppo
+ * @author Gruppo 23
+ * @date 12/12/2024
  */
 public class ContattoComparator implements Comparator<Contatto> {
 
     /**
-     * @brief ovveride del metodo compare
+     * @brief Ovveride del metodo compare.
+     * 
+     * Questo metodo confronta i cognomi di due contatti tramite il metodo compare(). Nel caso in 
+     * cui uno dei due oggetti non ha il cognome viene eseguito un ulteriore confronto tra il nome 
+     * del contatto senza cognome e il cognome dell'altro contatto, sempre tramite il metodo compare().
+     * Se i due cognomi sono uguali si esegue un confronto tra i due nomi dei contatti sempre tramite compare().
+     * 
+     * 
      * @param[in] o1: primo contatto
      * @param[in] o2: secondo contatto
-     * @return restituisce il valore della compareto tra due scringhe
-     * 
-     * questo metodo esegue la compare tra i congomi di due contatti. nel caso in 
-     * cui uno dei due oggetti non ha il cognome viene eseguita la compare sul nome.
-     * se i due cognomi sono uguali si esegue la compare tra i due nomi
+     * @return Restituisce il valore della compareTo tra due stringhe.
      */
     
     @Override
