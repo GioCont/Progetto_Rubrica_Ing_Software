@@ -73,14 +73,12 @@ class RubricaGUI
             int result = fileChooser.showOpenDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
                 nomefile = fileChooser.getSelectedFile();
-                try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomefile))) {
-                out.writeObject(rubrica.getContatti());
-                } catch (IOException io) {
-                    io.printStackTrace();
-                }
+                rubrica.salvaRubrica(nomefile);
+                
             }
         
         });
+
         
         eliminaButton.addActionListener(e-> {
             Contatto contattoSelezionato = listaContatti.getSelectedValue();
