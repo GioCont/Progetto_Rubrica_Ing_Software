@@ -4,14 +4,18 @@
  */
 package progetto_ing_software;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @file Rubrica.java
@@ -66,16 +70,17 @@ public class Rubrica extends InOutRubrica {
      * @brief metodo per salvare la rubrica su un file 
      * @post verrà creato un file "rubrica.dat"
      */
-    public void salvaRubrica(){
-       super.salvaRubrica(contatti);
+    public void salvaRubrica(File namefile){
+        super.salvaRubrica(this.getContatti(), namefile);
     }
     
     /**
+     * @param filename
      * @brief metodo che consente di caricare la rubrica da file
      * @post il programma visualizzera la rubrica caricata
      */
-    public void caricaRubrica(){
-      contatti=super.caricaRubrica(contatti);
+    public void caricaRubrica(File filename){
+      contatti=super.caricaRubrica(filename,this);
     }
     /**
      * @brief metodo che consente la ricerca di una stringa all'interno del nome o cognome dei contatti 

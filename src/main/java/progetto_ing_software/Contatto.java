@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @author gruppo
  */
-public class Contatto implements Serializable {
+public class Contatto {
     private String nome;
     private String cognome;
     private String [] numeroTelefono;
