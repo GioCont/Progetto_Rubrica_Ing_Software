@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @brief Classe di test di tutti i metodi della classe Contatto.
  * 
  * All'interno di questa classe vengono definiti tanti metodi quanti la classe Contatto contiene.
- * Per ogni metodo è stato impllementato un test che ne verifichi il corretto funzionamento.
+ * Per ogni metodo è stato implementato un test che ne verifichi il corretto funzionamento.
  * 
  * @version 1.0
  * @author Gruppo 23
@@ -41,7 +41,7 @@ public class ContattoTest {
     }
     
     /**
-     * @brief Utilizzo del metodo BeforeEach per instanziare un conatto di base.
+     * @brief Utilizzo del metodo BeforeEach per instanziare un contatto di base.
      * 
      * All'interno di questa funzione si definisce che, prima di ogni test, vengano instanziati all'interno del
      * contatto standard, dei valori che saranno poi utilizzati nei test.
@@ -52,7 +52,7 @@ public class ContattoTest {
         System.out.println("Set up contatti standard");
         String[] numTel = {"3315783174","3357230290","3929261904"};
         String[] email = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
-        contatto = new Contatto("Giovanni","Contursi",numTel,email);
+        contatto = new Contatto("Contursi","Giovanni",numTel,email);
     }
     
     /**

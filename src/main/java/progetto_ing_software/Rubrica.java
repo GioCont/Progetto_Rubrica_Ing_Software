@@ -94,7 +94,7 @@ public class Rubrica extends InOutRubrica {
      * @post il programma visualizzera la rubrica caricata
      */
     public void caricaRubrica(File filename){
-      contatti=super.caricaRubrica(filename,this);
+      contatti=super.caricaRubrica(contatti,filename);
     }
     /**
      * @brief Metodo che consente la ricerca di un contatto all'interno della rubrica.
