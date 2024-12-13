@@ -5,15 +5,18 @@
  */
 package progetto_ing_software;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @file InOutRubrica.java
@@ -23,7 +26,6 @@ import java.util.List;
  * @author Gruppo 23
  */
 public class InOutRubrica {
-    private static final String FILE_NAME = "rubrica.dat";
     
      /**
      * @brief metodo per salvare la rubrica su un file 
@@ -85,5 +87,7 @@ public class InOutRubrica {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Rubrica.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return r.getContatti();
+    }
 
 }
