@@ -28,7 +28,7 @@ public class Contatto implements Serializable {
      * @param[in] email :prima email del contatto
      */
     
-    public Contatto(String nome,String cognome,String[] numeroTelefono,String[] email){
+    public Contatto(String cognome,String nome,String[] numeroTelefono,String[] email){
         this.nome=nome;
         this.cognome=cognome;
         this.numeroTelefono=new String [3];
