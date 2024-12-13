@@ -84,16 +84,17 @@ public class Rubrica extends InOutRubrica {
      * @brief Metodo per salvare la rubrica su un file.
      * @post verrà creato un file "rubrica.dat"
      */
-    public void salvaRubrica(){
-       super.salvaRubrica(contatti);
+    public void salvaRubrica(File namefile){
+        super.salvaRubrica(this.getContatti(), namefile);
     }
     
     /**
+     * @param filename
      * @brief metodo che consente di caricare la rubrica da file
      * @post il programma visualizzera la rubrica caricata
      */
-    public void caricaRubrica(){
-      contatti=super.caricaRubrica(contatti);
+    public void caricaRubrica(File filename){
+      contatti=super.caricaRubrica(filename,this);
     }
     /**
      * @brief Metodo che consente la ricerca di un contatto all'interno della rubrica.
