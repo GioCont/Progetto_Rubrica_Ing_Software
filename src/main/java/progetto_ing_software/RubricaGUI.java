@@ -117,7 +117,7 @@ class RubricaGUI
                     Contatto contattoSelezionato = listaContatti.getSelectedValue();
                     if (contattoSelezionato != null) {
                         try {
-                            mostraDettagliContatto(contattoSelezionato, contattiModel);
+                            mostraDettagliContatto(contattoSelezionato);
                         }
                         catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -174,43 +174,25 @@ class RubricaGUI
             String nome = nomeField.getText().trim();
             String[] numeri = {numeroField1.getText().trim(), numeroField2.getText().trim(), numeroField3.getText().trim()};
             String[] emails = {emailsField1.getText().trim(), emailsField2.getText().trim(), emailsField3.getText().trim()};
-
-            if (nome.isEmpty() && cognome.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nome e cognome sono obbligatori.", "Errore", JOptionPane.ERROR_MESSAGE);
-                return null;
-            }
-
-            for (String numero : numeri) {
-                if (!numero.isEmpty() && !numero.matches("\\+?\\d+")) {
-                    JOptionPane.showMessageDialog(null, "Numero di telefono non valido: " + numero, "Errore", JOptionPane.ERROR_MESSAGE);
-                    return null;
-                }
-            }
-
-            for (String email : emails) {
-                if (!email.isEmpty() && !email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
-                    JOptionPane.showMessageDialog(null, "Email non valida: " + email, "Errore", JOptionPane.ERROR_MESSAGE);
-                    return null;
-                }
-            }
-
+            
+            if(this.isContatto(cognome,nome,numeri,emails)){
             return new Contatto(cognome, nome, numeri, emails);
+            }
         }
         return null;
     }
 
-    private void mostraDettagliContatto(Contatto contatto, DefaultListModel<Contatto> model) throws IOException {
+    private void mostraDettagliContatto(Contatto contatto) throws IOException {
         this.setTextField(contatto);
         int result = JOptionPane.showConfirmDialog(null, panel, "Modifica Contatto", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            contatto.setNome(nomeField.getText());
-            contatto.setCognome(cognomeField.getText());
-            contatto.setNumeroTelefono(numeroField1.getText(),0);
-            contatto.setNumeroTelefono(numeroField2.getText(),1);
-            contatto.setNumeroTelefono(numeroField3.getText(),2);
-            contatto.setEmail(emailsField1.getText(),0);
-            contatto.setEmail(emailsField2.getText(),1);
-            contatto.setEmail(emailsField3.getText(),2);
+            String cognome = cognomeField.getText().trim();
+            String nome = nomeField.getText().trim();
+            String[] numeri = {numeroField1.getText().trim(), numeroField2.getText().trim(), numeroField3.getText().trim()};
+            String[] emails = {emailsField1.getText().trim(), emailsField2.getText().trim(), emailsField3.getText().trim()};
+            if(this.isContatto(cognome, nome, numeri, emails)){
+            this.getTextField(contatto);
+            }
             this.aggiornaRubrica();
         }
     }
@@ -242,6 +224,39 @@ class RubricaGUI
         emailsField1.setText("");
         emailsField2.setText("");
         emailsField3.setText("");
+    }
+    
+    private void getTextField(Contatto contatto){
+        contatto.setNome(nomeField.getText());
+        contatto.setCognome(cognomeField.getText());
+        contatto.setNumeroTelefono(numeroField1.getText(),0);
+        contatto.setNumeroTelefono(numeroField2.getText(),1);
+        contatto.setNumeroTelefono(numeroField3.getText(),2);
+        contatto.setEmail(emailsField1.getText(),0);
+        contatto.setEmail(emailsField2.getText(),1);
+        contatto.setEmail(emailsField3.getText(),2);
+    }
+    
+    private boolean isContatto(String cognome,String nome,String[] numeri,String[] emails){
+        if (nome.isEmpty() && cognome.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome e cognome sono obbligatori.", "Errore", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        for (String numero : numeri) {
+            if (!numero.isEmpty() && !numero.matches("\\+?\\d+")) {
+                JOptionPane.showMessageDialog(null, "Numero di telefono non valido: " + numero, "Errore", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+
+        for (String email : emails) {
+            if (!email.isEmpty() && !email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+                JOptionPane.showMessageDialog(null, "Email non valida: " + email, "Errore", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return true;
     }
     
     private void addContatto(){

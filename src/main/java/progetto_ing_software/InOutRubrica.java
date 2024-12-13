@@ -61,7 +61,7 @@ public class InOutRubrica {
      * @post il programma visualizzera la rubrica caricata
      */
     public List<Contatto> caricaRubrica(List<Contatto> list,File filename){
-        
+        list.clear();
         try(Scanner i = new Scanner(new BufferedReader(new FileReader(filename)))) {
  
                 Contatto c;
