@@ -60,7 +60,7 @@ public class InOutRubrica {
      * @brief metodo che consente di caricare la rubrica da file
      * @post il programma visualizzera la rubrica caricata
      */
-    public List<Contatto> caricaRubrica(File filename,Rubrica r){
+    public List<Contatto> caricaRubrica(List<Contatto> list,File filename){
         
         try(Scanner i = new Scanner(new BufferedReader(new FileReader(filename)))) {
  
@@ -72,22 +72,22 @@ public class InOutRubrica {
                 
          while(i.hasNext()){
              
-                String nome=i.next();
                 String cognome=i.next();
+                String nome=i.next();
                 String [] telefono={i.next(),i.next(),i.next()};
                 String [] email={i.next(),i.next(),i.next()};
              
-                c = new Contatto(nome,cognome,telefono,email);
+                c = new Contatto(cognome,nome,telefono,email);
                
                 
-                r.addContatto(c);
+                list.add(c);
             
          }
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Rubrica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return r.getContatti();
+        return list;
     }
 
 }

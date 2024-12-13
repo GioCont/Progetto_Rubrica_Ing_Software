@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @brief Classe di test di tutti i metodi della classe ContattoComparator.
  * 
  * All'interno di questa classe vengono definiti tanti metodi quanti la classe ContattoComparator contiene.
- * Per ogni metodo è stato impllementato un test che ne verifichi il corretto funzionamento.
+ * Per ogni metodo è stato implementato un test che ne verifichi il corretto funzionamento.
  * 
  * @version 1.0
  * @author Gruppo 23
@@ -52,10 +52,10 @@ public class ContattoComparatorTest {
         System.out.println("Set up contatti standard");
         String[] numTel1 = {"3315783174","3357230290","3929261904"};
         String[] email1 = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
-        contatto1 = new Contatto("Giovanni","Contursi",numTel1,email1);
+        contatto1 = new Contatto("Contursi","Giovanni",numTel1,email1);
         String[] numTel2 = {"3920393265","3277115278","3319671661"};
         String[] email2 = {"f.cerrone@gmail.com","fede.cerrone@gmail.com","federico.cerrone04@gmail.com"};
-        contatto2 = new Contatto("Federico","Cerrone",numTel2,email2);
+        contatto2 = new Contatto("Cerrone","Federico",numTel2,email2);
         
     }
     
