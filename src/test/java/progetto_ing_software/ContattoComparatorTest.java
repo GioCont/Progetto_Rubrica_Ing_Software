@@ -71,7 +71,7 @@ public class ContattoComparatorTest {
     }
 
     /**
-     * @brief Test del metodo compare nella classe ContattoComparator.
+     * @brief Test del metodo compare della classe ContattoComparator.
      * 
      * Questi test utilizzano i contatti creati nel BeforeEach per testare il funzionamento del metodo 
      * compare, controllando in base all'ordine di inserimento dei contatti i valori restituiti.
