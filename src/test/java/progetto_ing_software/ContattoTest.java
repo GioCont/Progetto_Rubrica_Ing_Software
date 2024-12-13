@@ -15,8 +15,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * *@file ContattoTest.java
+ * @brief Classe di test di tutti i metodi della classe Contatto.
+ * 
+ * All'interno di questa classe vengono definiti tanti metodi quanti la classe Contatto contiene.
+ * Per ogni metodo è stato implementato un test che ne verifichi il corretto funzionamento.
+ * 
+ * @version 1.0
  * @author Gruppo 23
+ * @date 13/12/2024
+ * 
  */
 public class ContattoTest {
     Contatto contatto;
@@ -32,14 +40,27 @@ public class ContattoTest {
     public static void tearDownClass() {
     }
     
+    /**
+     * @brief Utilizzo del metodo BeforeEach per instanziare un contatto di base.
+     * 
+     * All'interno di questa funzione si definisce che, prima di ogni test, vengano instanziati all'interno del
+     * contatto standard, dei valori che saranno poi utilizzati nei test.
+     * 
+     */
     @BeforeEach
     public void setUp() {
         System.out.println("Set up contatti standard");
         String[] numTel = {"3315783174","3357230290","3929261904"};
         String[] email = {"g.contursi@gmail.com","gio.contursi2003@gmail.com","giovanni.contursi03@gmail.com"};
-        contatto = new Contatto("Giovanni","Contursi",numTel,email);
+        contatto = new Contatto("Contursi","Giovanni",numTel,email);
     }
     
+    /**
+     * @brief Utilizzo del metodo AfterEach per un print.
+     * 
+     * All'interno di questa funzione si definisce che, dopo di ogni test, venga printato lo stato del processo.
+     * 
+     */
     @AfterEach
     public void tearDown() {
         System.out.println("Clean standard var");
@@ -47,7 +68,12 @@ public class ContattoTest {
     }
 
     /**
-     * Test of getNome method, of class Contatto.
+     * @brief Questa funzione testa il metodo getNome() della classe contatto.
+     * 
+     * Questa funzione controlla se il nome inserito nel contatto instanziato nel BeforeEach è uguale
+     * ad una stringa tramite il metodo assertEquals().
+     * 
+     * @see getNome(), Contatto.
      */
     @Test
     public void testGetNome() {
@@ -56,7 +82,12 @@ public class ContattoTest {
     }
 
     /**
-     * Test of getCognome method, of class Contatto.
+     * @brief Questa funzione testa il metodo getCognome() della classe contatto.
+     * 
+     * Questa funzione controlla se il cognome inserito nel contatto instanziato nel BeforeEach è uguale
+     * ad una stringa tramite il metodo assertEquals().
+     * 
+     * @see getCognome.
      */
     @Test
     public void testGetCognome() {
@@ -65,7 +96,12 @@ public class ContattoTest {
     }
 
     /**
-     * Test of getNumeroTelefono method, of class Contatto.
+     * @brief Questa funzione testa il metodo getNumeroTelefono() della classe contatto.
+     * 
+     * Questa funzione controlla se il numero di telefono instanziato nel contatto standard è uguale ad un array
+     * contenente anch'esso dei numeri di telefono tramite il metodo assertArrayEquals().
+     * 
+     * @see getNumeroTelefono().
      */
     @Test
     public void testGetNumeroTelefono() {
@@ -75,7 +111,12 @@ public class ContattoTest {
     }
 
     /**
-     * Test of getEmail method, of class Contatto.
+     * @brief Questa funzione testa il metodo getEmail() della classe contatto.
+     * 
+     * Questa funzione controlla se la e-mail instanziata nel contatto standard è uguale ad un array
+     * contenente anch'esso delle e-mail tramite il metodo assertArrayEquals().
+     * 
+     * @see getEmail().
      */
     @Test
     public void testGetEmail() {
@@ -85,7 +126,14 @@ public class ContattoTest {
     }
 
     /**
-     * Test of setNome method, of class Contatto.
+     * @brief Questa funzione testa il metodo setNome() della classe contatto.
+     * 
+     * All'interno di questa funzione viene preso il contatto standard e tramite il metodo
+     * setNome() ne viene cambiato il nome.Succesivamente controlla tramite la funzione assertEquals() se
+     * il cambiamento è avvenuto con successo confrontandolo con una stringa contenente anch'essa
+     * lo stesso nome.
+     * 
+     * @see setNome().
      */
     @Test
     public void testSetNome() {
@@ -96,7 +144,14 @@ public class ContattoTest {
     }
 
     /**
-     * Test of setCongome method, of class Contatto.
+     * @brief Questa funzione testa il metodo setCognome() della classe contatto.
+     * 
+     * All'interno di questa funzione viene preso il contatto standard e tramite il metodo
+     * setCognome() ne viene cambiato il cognome. Succesivamente controlla tramite la funzione assertEquals() se
+     * il cambiamento è avvenuto con successo confrontandolo con una stringa contenente anch'essa
+     * lo stesso cognome.
+     * 
+     * @see setCognome().
      */
     @Test
     public void testSetCongome() {
@@ -106,7 +161,14 @@ public class ContattoTest {
     }
 
     /**
-     * Test of setNumeroTelefono method, of class Contatto.
+     * @brief Questa funzione testa il metodo setNumeroTelefono() della classe contatto.
+     * 
+     * All'interno di questa funzione viene preso il contatto standard e tramite il metodo
+     * setNumeroTelefono() vengono cambiati tutti e 3 i numeri di telefono. Succesivamente controlla tramite 
+     * la funzione assertArrayEquals() se il cambiamento è avvenuto con successo confrontandolo con un array 
+     * contenente anch'esso gli stessi numeri di telefono.
+     * 
+     * @see setNumeroTelefono().
      */
     @Test
     public void testSetNumeroTelefono() {
@@ -119,7 +181,14 @@ public class ContattoTest {
     }
 
     /**
-     * Test of setEmail method, of class Contatto.
+     * @brief Questa funzione testa il metodo setEmail() della classe contatto.
+     * 
+     * All'interno di questa funzione viene preso il contatto standard e tramite il metodo
+     * setEmail() vengono cambiate tutte e 3 le numeri e-mail. Succesivamente controlla tramite 
+     * la funzione assertArrayEquals() se il cambiamento è avvenuto con successo confrontandolo con un array 
+     * contenente anch'esso le stesse e-mail.
+     * 
+     * @see setEmail().
      */
     @Test
     public void testSetEmail() {
@@ -132,7 +201,12 @@ public class ContattoTest {
     }
 
     /**
-     * Test of toString method, of class Contatto.
+     * @brief Questa funzione testa il metodo toString() della classe contatto.
+     * 
+     * Questa funzione controlla se l'output della funzione toString() sul contatto standard
+     * è uguale ad una stringa contenente il nome e il cognome del contatto standard.
+     * 
+     * @see toString().
      */
     @Test
     public void testToString() {
