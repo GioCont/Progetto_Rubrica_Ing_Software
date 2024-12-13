@@ -107,17 +107,12 @@ class RubricaGUI
             int result = fileChooser.showOpenDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
                 nomefile = fileChooser.getSelectedFile();
-                try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomefile))) {
-                    Rubrica nuovaRubrica = (Rubrica) ois.readObject();
-                    rubrica.setContatti(nuovaRubrica.getContatti());
-                    contattiModel.clear();
-                    for (Contatto contatto : rubrica.getContatti())
-                    {
-                        contattiModel.addElement(contatto);
-                    }
-                } catch (IOException | ClassNotFoundException ex) {
-                    JOptionPane.showMessageDialog(frame, "Errore durante il caricamento del file: " + ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+                rubrica.caricaRubrica(nomefile);
+                contattiModel.clear();
+                for(Contatto c:rubrica.getContatti()){
+                contattiModel.addElement(c);
                 }
+                
             }
         });
 
