@@ -9,6 +9,7 @@ package progetto_ing_software;
  *
  * @author cerro
  */
+import interfaccia.RubricaGUI;
 import javax.swing.*;
 
 public class Main

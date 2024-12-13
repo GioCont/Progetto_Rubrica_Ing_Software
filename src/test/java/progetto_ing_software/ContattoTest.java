@@ -5,6 +5,7 @@
  */
 package progetto_ing_software;
 
+import entita.Contatto;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.AfterEach;

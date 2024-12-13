@@ -4,6 +4,8 @@
  */
 package progetto_ing_software;
 
+import entita.Rubrica;
+import entita.Contatto;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
