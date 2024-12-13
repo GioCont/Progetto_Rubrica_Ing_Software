@@ -27,93 +27,76 @@ class RubricaGUI
 {
     private Rubrica rubrica;
     private File nomefile;
+    private JFrame frame;
+    private DefaultListModel<Contatto> contattiModel;
+    private JList<Contatto> listaContatti;
+    private JPanel panel;
+    private JTextField cognomeField;
+    private JTextField nomeField;
+    private JTextField numeroField1;
+    private JTextField numeroField2;
+    private JTextField numeroField3;
+    private JTextField emailsField1;
+    private JTextField emailsField2;
+    private JTextField emailsField3;
 
     //Costruttore
     public RubricaGUI()
     {
         rubrica = new Rubrica();
-        initGUI();
+        panel = new JPanel(new GridLayout(8, 2));
+        initrubricaGUI();
+        initcontattoGUI();
     }
 
     //Funzione dell'interfaccia Grafica
-    private void initGUI()
+    private void initrubricaGUI()
     {
         //Creazione del Frame Principale
-        JFrame frame = new JFrame("Rubrica Telefonica");
+        frame = new JFrame("Rubrica Telefonica");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
 
         //Aggiunta della lista dei contatti
-        DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
-        JList<Contatto> listaContatti = new JList<>(contattiModel);
+        contattiModel = new DefaultListModel<>();
+        listaContatti = new JList<>(contattiModel);
 
         //TextField di Ricerca
         JTextField ricercaField = new JTextField();
 
         //Pulsanti Agiunggi Contatto e Carica File
         JButton aggiungiButton = new JButton("Aggiungi Contatto");
+        JButton eliminaButton = new JButton("Elimina Contatto");
         JButton caricaButton = new JButton("Carica");
-        JButton eliminaButton = new JButton("elimina Contatto");
         JButton salvaButton = new JButton("salva");
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(ricercaField, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(aggiungiButton);
-        buttonPanel.add(caricaButton);
         buttonPanel.add(eliminaButton);
+        buttonPanel.add(caricaButton); 
         buttonPanel.add(salvaButton);
         topPanel.add(buttonPanel, BorderLayout.EAST);
 
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(new JScrollPane(listaContatti), BorderLayout.CENTER);
         
-        salvaButton.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser(); 
-            int result = fileChooser.showOpenDialog(frame);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                nomefile = fileChooser.getSelectedFile();
-                rubrica.salvaRubrica(nomefile);
-                
-            }
-        
+        aggiungiButton.addActionListener(e -> {
+            this.addContatto();
         });
-
         
         eliminaButton.addActionListener(e-> {
-            Contatto contattoSelezionato = listaContatti.getSelectedValue();
-            rubrica.removeContatto(contattoSelezionato);
-            contattiModel.clear();
-                for (Contatto contatto : rubrica.getContatti()){
-                    contattiModel.addElement(contatto);
-                }
+            this.removeContatto();
             
         });
-
-        aggiungiButton.addActionListener(e -> {
-            Contatto nuovoContatto = creaNuovoContatto();
-            if (nuovoContatto != null) {
-                rubrica.addContatto(nuovoContatto);
-                contattiModel.clear();
-                for(Contatto c:rubrica.getContatti()){
-                contattiModel.addElement(c);
-                }
-                
-            }
-        });
-
+        
         caricaButton.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            int result = fileChooser.showOpenDialog(frame);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                nomefile = fileChooser.getSelectedFile();
-                rubrica.caricaRubrica(nomefile);
-                contattiModel.clear();
-                for(Contatto c:rubrica.getContatti()){
-                contattiModel.addElement(c);
-                }
-                
-            }
+            this.caricaRubrica();
+        });
+        
+        salvaButton.addActionListener(e -> {
+            this.salvaRubrica();
         });
 
         ricercaField.addKeyListener(new KeyAdapter() {
@@ -146,25 +129,22 @@ class RubricaGUI
 
         frame.setVisible(true);
     }
-
-    private Contatto creaNuovoContatto()
-    {
-        JTextField nomeField = new JTextField();
-        JTextField cognomeField = new JTextField();
-        JTextField numeroField1 = new JTextField();
-        JTextField numeroField2 = new JTextField();
-        JTextField numeroField3 = new JTextField();
-        JTextField emailsField1 = new JTextField();
-        JTextField emailsField2 = new JTextField();
-        JTextField emailsField3 = new JTextField();
-
-        JPanel panel = new JPanel(new GridLayout(8, 2));
+    
+    private void initcontattoGUI(){
+        cognomeField = new JTextField();
+        nomeField = new JTextField();
+        numeroField1 = new JTextField();
+        numeroField2 = new JTextField();
+        numeroField3 = new JTextField();
+        emailsField1 = new JTextField();
+        emailsField2 = new JTextField();
+        emailsField3 = new JTextField();
+        
+        panel.add(new JLabel("Cognome:"));
+        panel.add(cognomeField);
 
         panel.add(new JLabel("Nome:"));
         panel.add(nomeField);
-
-        panel.add(new JLabel("Cognome:"));
-        panel.add(cognomeField);
 
         panel.add(new JLabel("Numero1:"));
         panel.add(numeroField1);
@@ -183,12 +163,15 @@ class RubricaGUI
 
         panel.add(new JLabel("Email1:"));
         panel.add(emailsField3);
+        
+    }
 
-
+    private Contatto creaNuovoContatto(){
+        this.clearTextField();
         int result = JOptionPane.showConfirmDialog(null, panel, "Nuovo Contatto", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            String nome = nomeField.getText().trim();
             String cognome = cognomeField.getText().trim();
+            String nome = nomeField.getText().trim();
             String[] numeri = {numeroField1.getText().trim(), numeroField2.getText().trim(), numeroField3.getText().trim()};
             String[] emails = {emailsField1.getText().trim(), emailsField2.getText().trim(), emailsField3.getText().trim()};
 
@@ -211,46 +194,13 @@ class RubricaGUI
                 }
             }
 
-            return new Contatto(nome, cognome, numeri, emails);
+            return new Contatto(cognome, nome, numeri, emails);
         }
         return null;
     }
 
     private void mostraDettagliContatto(Contatto contatto, DefaultListModel<Contatto> model) throws IOException {
-        JTextField nomeField = new JTextField(contatto.getNome());
-        JTextField cognomeField = new JTextField(contatto.getCognome());
-        JTextField numeroField1 = new JTextField(contatto.getNumeroTelefono()[0]);
-        JTextField numeroField2 = new JTextField(contatto.getNumeroTelefono()[1]);
-        JTextField numeroField3 = new JTextField(contatto.getNumeroTelefono()[2]);
-        JTextField emailsField1 = new JTextField(contatto.getEmail()[0]);
-        JTextField emailsField2 = new JTextField(contatto.getEmail()[1]);
-        JTextField emailsField3 = new JTextField(contatto.getEmail()[2]);
-
-        JPanel panel = new JPanel(new GridLayout(8, 2));
-        panel.add(new JLabel("Nome:"));
-        panel.add(nomeField);
-
-        panel.add(new JLabel("Cognome:"));
-        panel.add(cognomeField);
-
-        panel.add(new JLabel("Numero1:"));
-        panel.add(numeroField1);
-
-        panel.add(new JLabel("Email1:"));
-        panel.add(emailsField1);
-
-        panel.add(new JLabel("Numero2:"));
-        panel.add(numeroField2);
-
-        panel.add(new JLabel("Email2:"));
-        panel.add(emailsField2);
-
-        panel.add(new JLabel("Numero3:"));
-        panel.add(numeroField3);
-
-        panel.add(new JLabel("Email1:"));
-        panel.add(emailsField3);
-
+        this.setTextField(contatto);
         int result = JOptionPane.showConfirmDialog(null, panel, "Modifica Contatto", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             contatto.setNome(nomeField.getText());
@@ -261,10 +211,70 @@ class RubricaGUI
             contatto.setEmail(emailsField1.getText(),0);
             contatto.setEmail(emailsField2.getText(),1);
             contatto.setEmail(emailsField3.getText(),2);
-            model.removeElement(contatto);
-            model.addElement(contatto);
+            this.aggiornaRubrica();
+        }
+    }
+    
+    private void aggiornaRubrica(){
+        contattiModel.clear();
+        for(Contatto c:rubrica.getContatti()){
+            contattiModel.addElement(c);
+        }
+    }
+    
+    private void setTextField(Contatto c){
+        cognomeField.setText(c.getCognome());
+        nomeField.setText(c.getNome());
+        numeroField1.setText(c.getNumeroTelefono()[0]);
+        numeroField2.setText(c.getNumeroTelefono()[1]);
+        numeroField3.setText(c.getNumeroTelefono()[2]);
+        emailsField1.setText(c.getEmail()[0]);
+        emailsField2.setText(c.getEmail()[1]);
+        emailsField3.setText(c.getEmail()[2]);
+    }
+    
+    private void clearTextField(){
+        cognomeField.setText("");
+        nomeField.setText("");
+        numeroField1.setText("");
+        numeroField2.setText("");
+        numeroField3.setText("");
+        emailsField1.setText("");
+        emailsField2.setText("");
+        emailsField3.setText("");
+    }
+    
+    private void addContatto(){
+        Contatto Contatto = creaNuovoContatto();
+            if (Contatto != null) {
+                rubrica.addContatto(Contatto);
+                this.aggiornaRubrica();
+            }
+    }
+    
+    private void removeContatto(){
+        Contatto contattoSelezionato = listaContatti.getSelectedValue();
+        rubrica.removeContatto(contattoSelezionato);
+        this.aggiornaRubrica();
+    }
+    
+    private void caricaRubrica(){
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            nomefile = fileChooser.getSelectedFile();
+            rubrica.caricaRubrica(nomefile);
+            this.aggiornaRubrica();
+        }
+    }
+    
+    private void salvaRubrica(){
+        JFileChooser fileChooser = new JFileChooser(); 
+        int result = fileChooser.showOpenDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+           nomefile = fileChooser.getSelectedFile();
+           rubrica.salvaRubrica(nomefile);        
         }
     }
     
     
-}
