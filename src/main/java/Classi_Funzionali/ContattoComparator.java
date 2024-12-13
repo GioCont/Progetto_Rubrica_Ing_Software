@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progetto_ing_software;
+package Classi_Funzionali;
 
+import Entità.Contatto;
 import java.util.Comparator;
 
 /**

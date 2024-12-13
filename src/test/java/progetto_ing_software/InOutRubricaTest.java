@@ -5,6 +5,8 @@
  */
 package progetto_ing_software;
 
+import Classi_Funzionali.InOutRubrica;
+import Entità.Contatto;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

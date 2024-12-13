@@ -5,6 +5,8 @@
  */
 package progetto_ing_software;
 
+import Classi_Funzionali.ContattoComparator;
+import Entità.Contatto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

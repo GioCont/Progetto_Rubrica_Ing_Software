@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progetto_ing_software;
+package Interfaccia;
 
 /**
  *
@@ -22,8 +22,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
+import Entità.Contatto;
+import Entità.Rubrica;
 
-class RubricaGUI
+public class RubricaGUI
 {
     private Rubrica rubrica;
     private File nomefile;
