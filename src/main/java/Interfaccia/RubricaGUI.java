@@ -6,8 +6,10 @@
 package Interfaccia;
 
 /**
- *
- * @author cerro
+ * @file RubricaGUI.java
+ * @brief questo file implementa l'interfaccia grafica della Rubrica e tutti i metodi di visualizzazione e di modifica del contatto nella GUI
+ * @version 1.1
+ * @author gruppo
  */
 import javax.swing.*;
 import java.awt.*;
@@ -16,12 +18,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Arrays;
 import Entità.Contatto;
 import Entità.Rubrica;
 
@@ -42,7 +38,11 @@ public class RubricaGUI
     private JTextField emailsField2;
     private JTextField emailsField3;
 
-    //Costruttore
+    /**
+     * @brief Costruttore della classe RubricaGUI.
+     * @see initrubricaGUI()
+     * @see initcontattoGUI()
+     */
     public RubricaGUI()
     {
         rubrica = new Rubrica();
@@ -51,7 +51,7 @@ public class RubricaGUI
         initcontattoGUI();
     }
 
-    //Funzione dell'interfaccia Grafica
+
     private void initrubricaGUI()
     {
         //Creazione del Frame Principale
@@ -66,7 +66,7 @@ public class RubricaGUI
         //TextField di Ricerca
         JTextField ricercaField = new JTextField();
 
-        //Pulsanti Agiunggi Contatto e Carica File
+        //Pulsanti Aggiungi Contatto e Carica File
         JButton aggiungiButton = new JButton("Aggiungi Contatto");
         JButton eliminaButton = new JButton("Elimina Contatto");
         JButton caricaButton = new JButton("Carica");
@@ -100,7 +100,6 @@ public class RubricaGUI
         
         eliminaButton.addActionListener(e-> {
             this.removeContatto();
-            
         });
         
         caricaButton.addActionListener(e -> {
@@ -136,7 +135,8 @@ public class RubricaGUI
 
         frame.setVisible(true);
     }
-    
+
+
     private void initcontattoGUI(){
         cognomeField = new JTextField();
         nomeField = new JTextField();
@@ -172,6 +172,7 @@ public class RubricaGUI
         panel.add(emailsField3);
         
     }
+
 
     private Contatto creaNuovoContatto(){
         this.clearTextField();
@@ -336,13 +337,29 @@ public class RubricaGUI
             this.aggiornaRubrica();
         }
     }
-    
+
     private void salvaRubrica(){
-        JFileChooser fileChooser = new JFileChooser(); 
-        int result = fileChooser.showOpenDialog(frame);
-        if (result == JFileChooser.APPROVE_OPTION) {
-           nomefile = fileChooser.getSelectedFile();
-           rubrica.salvaRubrica(nomefile);        
+        String fileName = "rubrica.dat";
+
+        // Crea il JFileChooser per scegliere la directory
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Scegli una directory per salvare il file");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        // Mostra il dialogo per la selezione della directory
+        int userSelection = fileChooser.showSaveDialog(null);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            // Ottieni la directory selezionata
+            File selectedDirectory = fileChooser.getSelectedFile();
+
+            // Crea il file con il nome predefinito nella directory selezionata
+            File fileToSave = new File(selectedDirectory, fileName);
+            rubrica.salvaRubrica(fileToSave);
+        }
+        else
+        {
+            System.out.println("Nessuna directory selezionata.");
         }
     }
 }

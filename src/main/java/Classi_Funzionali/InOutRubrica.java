@@ -22,7 +22,8 @@ import java.util.logging.Logger;
 
 /**
  * @file InOutRubrica.java
- * @brief questo file implementa i metodi che consentono il salvataggio e il caricamento della rubrica
+ * @brief Questo file implementa la classe InOutRubrica che contiene i metodi che di salvataggio e di caricamento della rubrica
+ *
  * @version 1.0
  * @date 12/12/2024
  * @author Gruppo 23
@@ -30,16 +31,14 @@ import java.util.logging.Logger;
 public class InOutRubrica {
     
      /**
-     * @brief metodo per salvare la rubrica su un file 
-     * @post verrà sovrascritto il file "rubrica.dat"
+     * @brief Metodo per salvare la Rubrica su un file
+     * @post Verrà creato/sovrascritto un file "rubrica.dat"
      */
     public void salvaRubrica(List<Contatto> list, File namefile){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(namefile))) {
             
             for(Contatto c : list) {
-            
-               
-                
+
                 writer.write(   c.getCognome() + '|' + 
                                 c.getNome()+ '|'+
                                 c.getNumeroTelefono()[0] + '|'+
@@ -49,8 +48,6 @@ public class InOutRubrica {
                                 c.getEmail()[1]+ '|'+
                                 c.getEmail()[2]+'\n'
                                 );
-            
-            
             }
         
         } catch (IOException ex) {
@@ -59,20 +56,20 @@ public class InOutRubrica {
     }
     
     /**
-     * @brief metodo che consente di caricare la rubrica da file
-     * @post il programma visualizzera la rubrica caricata
+     * @brief Metodo che consente di caricare i dati della Rubrica da un file scelto dall'utente
+     * @post Il programma visualizza la Rubrica caricata
      */
     public List<Contatto> caricaRubrica(List<Contatto> list,File filename){
         list.clear();
         try(Scanner i = new Scanner(new BufferedReader(new FileReader(filename)))) {
  
-                Contatto c;
+            Contatto c;
 
-                i.useLocale(Locale.US);
-                i.useDelimiter("\\||\\n"); // espressione regolare con OR logico dei caratteri pipe e fine linea
+            i.useLocale(Locale.US);
+            i.useDelimiter("\\||\\n"); // espressione regolare con OR logico dei caratteri pipe e fine linea
                
                 
-         while(i.hasNext()){
+            while(i.hasNext()){
              
                 String cognome=i.next();
                 String nome=i.next();
@@ -80,16 +77,15 @@ public class InOutRubrica {
                 String [] email={i.next(),i.next(),i.next()};
              
                 c = new Contatto(cognome,nome,telefono,email);
-               
-                
+
                 list.add(c);
+
+            }
             
-         }
-            
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             Logger.getLogger(Rubrica.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
-
 }

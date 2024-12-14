@@ -6,8 +6,14 @@
 package progetto_ing_software;
 
 /**
+ * @file Main.java
+ * @brief Questo file è il Main di tutto il programma.
  *
- * @author cerro
+ * Questa classe avvia la GUI del programma.
+ *
+ * @version 1.0
+ * @author Gruppo 23
+ * @date 12/12/2024
  */
 import Interfaccia.RubricaGUI;
 import javax.swing.*;

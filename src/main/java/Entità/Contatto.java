@@ -11,9 +11,11 @@ import java.util.ArrayList;
 
 /**
  * @file Contatto.java
- * @brief questo file implemetta tutti i metodi di contatto
+ * @brief questo file implementa tutti i metodi della classe Contatto
+ *
  * @version 1.0
- * @author gruppo
+ * @author Gruppo 23
+ * @date 12/12/2024
  */
 public class Contatto implements Serializable {
     private String nome;
@@ -39,8 +41,8 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce il nome del contatto
-     * @return nome :il nome del contatto
+     * @brief getNome, restituisce il nome del contatto
+     * @return nome : il nome del contatto
      */
     
     public String getNome(){
@@ -48,8 +50,8 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce il cognome del contatto
-     * @return cognome :il cognome del contatto
+     * @brief getCognome, restituisce il cognome del contatto
+     * @return cognome : il cognome del contatto
      */
     
     public String getCognome(){
@@ -57,7 +59,7 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce una stringa contenente tutti i numero di telefono
+     * @brief getNumeroTelefono, restituisce una stringa contenente tutti i numero di telefono
      * @return numeroTelefono : stringa contente tutti i numero di telefono
      */
     
@@ -66,7 +68,7 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce una stringa contenente tutte le email
+     * @brief getEmail, restituisce una stringa contenente tutte le email
      * @return email : stringa di email
      */
     
@@ -75,7 +77,7 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief consente di settare il nome del contatto
+     * @brief setNome consente di settare il nome del contatto
      * @param[in] nome: nuovo nome da dare al contatto
      */
     
@@ -84,7 +86,7 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief consente di settare il cognome del contatto
+     * @brief setCognome, consente di impostare il cognome del contatto
      * @param[in] cognome: nuovo cognome da dare al contatto
      */
     
@@ -93,18 +95,18 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief connsente di settare un numero di telefono di indice passato per parametro
-     * @param[in] numeroTelefono :nuovo numero di telefono
-     * @param[in] index :indice del numero di telefono da settare
+     * @brief setNumeroTelefono, consente di impostare un numero di telefono di indice passato per parametro in una specifica posizione dell'array
+     * @param[in] numeroTelefono : nuovo numero di telefono da inserire
+     * @param[in] index : indice del numero di telefono da settare
      */
     
-    public void setNumeroTelefono(String numeroTelefono,int index){
+    public void setNumeroTelefono(String numeroTelefono, int index){
         this.numeroTelefono[index]=numeroTelefono;
     }
     /**
-     * @brief connsente di settare una email di indice passato per parametro
-     * @param[in] email :nuova email
-     * @param[in] index :indice del email da settare
+     * @brief setEmail, consente di impostare una email di indice passato per parametro in una specifica posizione dell'array
+     * @param[in] email : nuova email
+     * @param[in] index : indice dell'email da settare
      */
     
     public void setEmail(String email,int index){
@@ -112,9 +114,9 @@ public class Contatto implements Serializable {
     }
     
     /**
-     * @brief restituisce una stringa che rapresenta il contatto
+     * @brief toString, restituisce una stringa che rappresenta il contatto
      * @return restituisce una stinga con cognome e nome del contatto
-     * questo metodo restituisce una stringa formata dal cognome e dal nome, se il contatto ha cognome vuoto restituira solo il nome
+     * Questo metodo restituisce una stringa formata dal cognome e dal nome, se il contatto ha cognome vuoto viene restituito solo il nome
      */
     @Override
     public String toString(){
