@@ -128,12 +128,7 @@ public class RubricaGUI
                 if (e.getClickCount() == 2) {
                     Contatto contattoSelezionato = listaContatti.getSelectedValue();
                     if (contattoSelezionato != null) {
-                        try {
-                            mostraDettagliContatto(contattoSelezionato);
-                        }
-                        catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        mostraDettagliContatto(contattoSelezionato);
                     }
                 }
             }
@@ -194,20 +189,67 @@ public class RubricaGUI
         return null;
     }
 
-    private void mostraDettagliContatto(Contatto contatto) throws IOException {
+    private void mostraDettagliContatto(Contatto contatto) {
+        this.setTextField(contatto);
+        JPanel dettagliPanel = new JPanel(new GridLayout(8, 2));
+
+        dettagliPanel.add(new JLabel("Cognome:"));
+        dettagliPanel.add(new JLabel(contatto.getCognome()));
+
+        dettagliPanel.add(new JLabel("Nome:"));
+        dettagliPanel.add(new JLabel(contatto.getNome()));
+
+        dettagliPanel.add(new JLabel("Numero1:"));
+        dettagliPanel.add(new JLabel(contatto.getNumeroTelefono()[0]));
+
+        dettagliPanel.add(new JLabel("Numero2:"));
+        dettagliPanel.add(new JLabel(contatto.getNumeroTelefono()[1]));
+
+        dettagliPanel.add(new JLabel("Numero3:"));
+        dettagliPanel.add(new JLabel(contatto.getNumeroTelefono()[2]));
+
+        dettagliPanel.add(new JLabel("Email1:"));
+        dettagliPanel.add(new JLabel(contatto.getEmail()[0]));
+
+        dettagliPanel.add(new JLabel("Email2:"));
+        dettagliPanel.add(new JLabel(contatto.getEmail()[1]));
+
+        dettagliPanel.add(new JLabel("Email3:"));
+        dettagliPanel.add(new JLabel(contatto.getEmail()[2]));
+
+        Object[] options = {"Modifica Contatto", "Chiudi"};
+        int result = JOptionPane.showOptionDialog(null, dettagliPanel,"Dettagli Contatto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,  options[0]);
+        if (result == JOptionPane.YES_OPTION) {
+            modificaDatiContatto(contatto);
+        }
+    }
+
+    private void modificaDatiContatto(Contatto contatto) {
         this.setTextField(contatto);
         int result = JOptionPane.showConfirmDialog(null, panel, "Modifica Contatto", JOptionPane.OK_CANCEL_OPTION);
+
         if (result == JOptionPane.OK_OPTION) {
             String cognome = cognomeField.getText().trim();
             String nome = nomeField.getText().trim();
             String[] numeri = {numeroField1.getText().trim(), numeroField2.getText().trim(), numeroField3.getText().trim()};
             String[] emails = {emailsField1.getText().trim(), emailsField2.getText().trim(), emailsField3.getText().trim()};
-            if(this.isContatto(cognome, nome, numeri, emails)){
-            this.getTextField(contatto);
+
+            if (this.isContatto(cognome, nome, numeri, emails)) {
+                contatto.setCognome(cognome);
+                contatto.setNome(nome);
+                contatto.setNumeroTelefono(numeri[0], 0);
+                contatto.setNumeroTelefono(numeri[1], 1);
+                contatto.setNumeroTelefono(numeri[2], 2);
+                contatto.setEmail(emails[0], 0);
+                contatto.setEmail(emails[1], 1);
+                contatto.setEmail(emails[2], 2);
+
+                this.aggiornaRubrica();
             }
-            this.aggiornaRubrica();
         }
     }
+
+
     
     private void aggiornaRubrica(){
         contattiModel.clear();
