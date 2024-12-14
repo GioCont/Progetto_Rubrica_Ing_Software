@@ -70,7 +70,17 @@ public class RubricaGUI
         JButton aggiungiButton = new JButton("Aggiungi Contatto");
         JButton eliminaButton = new JButton("Elimina Contatto");
         JButton caricaButton = new JButton("Carica");
-        JButton salvaButton = new JButton("salva");
+        JButton salvaButton = new JButton("Salva");
+        Color buttonColor = new Color(102,153,255);
+        aggiungiButton.setBackground(buttonColor);
+        eliminaButton.setBackground(buttonColor);
+        caricaButton.setBackground(buttonColor);
+        salvaButton.setBackground(buttonColor);
+
+        aggiungiButton.setForeground(Color.WHITE);
+        eliminaButton.setForeground(Color.WHITE);
+        caricaButton.setForeground(Color.WHITE);
+        salvaButton.setForeground(Color.WHITE);
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(ricercaField, BorderLayout.CENTER);
