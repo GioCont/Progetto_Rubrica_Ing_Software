@@ -168,7 +168,7 @@ public class RubricaGUI
         panel.add(new JLabel("Numero3:"));
         panel.add(numeroField3);
 
-        panel.add(new JLabel("Email1:"));
+        panel.add(new JLabel("Email3:"));
         panel.add(emailsField3);
         
     }
